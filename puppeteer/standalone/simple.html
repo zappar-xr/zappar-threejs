@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,user-scalable=no,minimal-ui" />
+    </head>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        #canvas-holder, canvas {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/THREE_VERSION/three.min.js"></script>
+    <script src="ZAPPAR_STANDALONE/zappar-threejs.js"></script>
+
+    <body>
+        <div id="canvas-holder"></div>
+
+        <script>
+            ZapparThree.setLogLevel(ZapparThree.LogLevel.LOG_LEVEL_VERBOSE);
+
+            if (ZapparThree.browserIncompatible()) {
+                ZapparThree.browserIncompatibleUI();
+                throw new Error("Browser incompatible");
+            }
+
+            const canvasHolder = document.querySelector("#canvas-holder") || document.createElement("div");
+
+            const renderer = new THREE.WebGLRenderer();
+            canvasHolder.appendChild(renderer.domElement);
+
+            renderer.setSize(canvasHolder.clientWidth, canvasHolder.clientHeight);
+            window.addEventListener("resize", () => {
+                renderer.setSize(canvasHolder.clientWidth, canvasHolder.clientHeight);
+            })
+
+            ZapparThree.glContextSet(renderer.getContext());
+
+            let camera = new ZapparThree.Camera();
+
+            let imgUrl = "face.png";
+            let img = document.createElement("img");
+            img.src = imgUrl;
+
+            img.onload = function() {
+                let source = new ZapparThree.HTMLElementSource(img);
+                source.start();
+                frame();
+            }
+
+            const scene = new THREE.Scene();
+            scene.add(camera);
+
+            scene.background = camera.backgroundTexture;
+
+            function frame() {
+                camera.updateFrame(renderer);
+                renderer.render(scene, camera);
+                requestAnimationFrame(frame);
+            }
+        </script>
+    </body>
+</html>
