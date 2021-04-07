@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import { THREE }  from "./three";
 import { HeadMaskMesh } from "./headmaskmesh";
 
 export class HeadMaskMeshLoader extends THREE.Loader {

@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import { THREE }  from "./three";
 import { InstantWorldTracker } from "@zappar/zappar";
 import { Camera, CameraMirrorMode } from "./camera";
 import { InstantWorldTrackerTransformOrigin } from "@zappar/zappar/lib/instantworldtracker";

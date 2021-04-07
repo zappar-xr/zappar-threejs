@@ -1,9 +1,7 @@
-import * as THREE from "three";
+import { THREE }  from "./three";
 import * as Zappar from "@zappar/zappar";
 import { FaceBufferGeometry } from "./facebuffergeometry";
-import { MeshBasicMaterial } from "three";
 import { FaceAnchorGroup } from "./faceanchorgroup";
-
 export class HeadMaskMesh extends THREE.Mesh {
 
     private _faceMesh = new Zappar.FaceMesh();
@@ -12,7 +10,7 @@ export class HeadMaskMesh extends THREE.Mesh {
     constructor(public onLoad?: () => void, public onError?: () => void) {
         super();
         this.geometry = this._faceBufferGeometry;
-        this.material = new MeshBasicMaterial({
+        this.material = new THREE.MeshBasicMaterial({
             colorWrite: false
         });
         this._faceMesh.loadDefaultFullHeadSimplified(true, true, true, true).then(() => this.onLoad?.()).catch(() => this.onError?.())

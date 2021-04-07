@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 
-import { LoadingManager as Manager } from 'three';
-import * as THREE from 'three';
+
+import { THREE }  from "./three";
 
 
 type OnProgress = ((url: string, loaded: number, total: number) => void) | undefined;
@@ -72,7 +72,7 @@ class UI{
                 transition: 'width 500ms',
             }
         }
-    
+
     constructor(style?: LoaderStyle) {
         this.customStyle = style;
         this.containerDiv = document.createElement("div");
@@ -87,7 +87,7 @@ class UI{
         elem.style.width = load_percentage + '%';
         elem.style.borderTopRightRadius = load_percentage + 'px';
         elem.style.borderBottomRightRadius = load_percentage + 'px';
-        
+
         elem.addEventListener("transitionend", () => {
             if (load_percentage == 100) {
                 this.containerDiv.style.opacity = "0";
@@ -99,28 +99,28 @@ class UI{
             }
         });
     }
-    
-    
+
+
     public dispose = () => {
         this.containerDiv.remove();
     }
-    
+
     public initialize() {
-        
+
         for(const key in this.divs){
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             (this.divs as unknown as any)[key].id = `zappar-loader-${key}`
         }
-        
+
         this.refreshStyle();
-        
+
         this.divs.inner.appendChild(this.divs.title);
         this.divs.inner.appendChild(this.divs.progress);
         this.divs.progress.appendChild(this.divs.progressValue)
         this.containerDiv.appendChild(this.divs.inner);
-        
+
         this.divs.title.innerHTML = 'Loading..'
-        
+
         document.body.append(this.containerDiv);
     }
 
@@ -146,24 +146,24 @@ export class DefaultLoaderUI extends UI{
         THREE.DefaultLoadingManager.onStart =  () =>{
             this.initialize();
         };
-        
+
         THREE.DefaultLoadingManager.onLoad = () => {
             options?.onLoad?.();
         };
-        
+
         THREE.DefaultLoadingManager.onProgress = ( _url, itemsLoaded, itemsTotal )=> {
             this.updateLoader(itemsLoaded / itemsTotal * 100);
         };
-        
+
     }
 }
 
 
-export class LoadingManager extends Manager {
+export class LoadingManager extends THREE.LoadingManager {
     ui = new UI(); // no multiple inheritance (╯°□°)╯︵ ┻━┻
 
     private onStartCallback: Function | undefined = undefined;
-    
+
     constructor(options?: {style?: LoaderStyle, onLoad?: OnLoad, onProgress?: OnProgress, onError?: OnError}) {
         super(() => options?.onLoad?.(), (url, loaded, total) => {
             this.ui.customStyle = options?.style;
@@ -173,16 +173,16 @@ export class LoadingManager extends Manager {
             this.ui.updateLoader(loaded / total * 100);
         }, options?.onError);
     }
-    
+
     public readonly onStart = () : void  => {
         this.ui.initialize();
         if (this.onStartCallback) this.onStartCallback();
     }
-    
+
     public _onStart = (callback: Function) : void => {
         this.onStartCallback = callback;
     }
-    
+
     public dispose = () : void  => {
         this.ui.dispose();
     }

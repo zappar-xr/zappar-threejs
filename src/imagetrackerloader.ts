@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import { THREE }  from "./three";
 import { ImageTracker } from "./defaultpipeline";
 
 export class ImageTrackerLoader extends THREE.Loader {

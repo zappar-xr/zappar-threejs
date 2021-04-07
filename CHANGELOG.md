@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.11] - 2021-04-07
+ - Updated ThreeJs to 0.127.0
+
+### Fixed
+- Fallback to getInverse for threejs versions before 0.123.x
+
+
+## [0.3.9-0.3.10] - 2021-03-12
+ - @zappar/zappar-threejs-for-aframe is now deployed alongside @zappar/zappar-threejs
+
 ## [0.3.8] - 2021-03-08
 
 ## Added

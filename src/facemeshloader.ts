@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import { THREE }  from "./three";
 import { FaceMesh } from "@zappar/zappar";
 
 export interface FaceMeshLoaderOptions {

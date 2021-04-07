@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import { THREE }  from "./three";
 import { FaceTracker, FaceAnchor } from "@zappar/zappar";
 import { Camera, CameraMirrorMode } from "./camera";
 

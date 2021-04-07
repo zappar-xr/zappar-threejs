@@ -33,7 +33,7 @@
     "@types/jest-environment-puppeteer": "^4.4.1",
     "@types/pixelmatch": "^5.2.2",
     "@types/pngjs": "^6.0.0",
-    "@types/three": "^0.126.0",
+    "@types/three": "^0.127.0",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "@zappar/zapworks-cli": "^0.6.17",
@@ -45,7 +45,7 @@
     "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
     "puppeteer": "^7.1.0",
-    "three": "^0.126.1",
+    "three": "^0.127.0",
     "ts-jest": "^26.5.1",
     "ts-loader": "^8.0.13",
     "ts-node": "^9.1.1",
@@ -55,7 +55,7 @@
     "webpack-dev-server": "^3.11.2"
   },
   "peerDependencies": {
-    "three": "0.113.0 - 0.126.1"
+    "three": "0.113.0 - 0.127.0"
   },
   "dependencies": {
     "@zappar/zappar": "0.3.8"

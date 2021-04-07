@@ -1,5 +1,4 @@
-import * as THREE from "three";
-import { WebGLRenderer } from "three";
+import { THREE }  from "./three";
 import * as Zappar from "@zappar/zappar";
 import { InstantWorldAnchor } from "@zappar/zappar/lib/instantworldtracker";
 import { getDefaultPipeline, CameraSource } from "./defaultpipeline";
@@ -101,7 +100,7 @@ export class Camera extends THREE.Camera {
         return this._currentMirrorMode;
     }
 
-    updateFrame(renderer: WebGLRenderer) : void {
+    updateFrame(renderer: THREE.WebGLRenderer) : void {
 
         const target = renderer.getRenderTarget();
         renderer.setRenderTarget(this._emptyTarget);
@@ -137,10 +136,10 @@ export class Camera extends THREE.Camera {
         const projection = Zappar.projectionMatrixFromCameraModel(model, renderer.domElement.width, renderer.domElement.height);
         this.projectionMatrix.fromArray(projection);
 
-        if(typeof this.projectionMatrixInverse.invert === 'function'){
-            this.projectionMatrixInverse.copy(this.projectionMatrix).invert();
+        if(typeof (this.projectionMatrixInverse as any).invert === 'function'){
+            (this.projectionMatrixInverse.copy(this.projectionMatrix) as any).invert();
         } else {
-           this.projectionMatrix.getInverse(this.projectionMatrix);
+           this.projectionMatrixInverse.getInverse(this.projectionMatrix);
         }
 
 
@@ -170,7 +169,7 @@ export class Camera extends THREE.Camera {
         return this.pipeline.cameraPoseWithOrigin(this.poseAnchorOrigin.poseCameraRelative(this._currentMirrorMode === CameraMirrorMode.Poses));
     }
 
-    private _updateBackgroundTexture(r: WebGLRenderer) {
+    private _updateBackgroundTexture(r: THREE.WebGLRenderer) {
         this.pipeline.cameraFrameUploadGL();
         const texture = this.pipeline.cameraFrameTextureGL();
         if (!texture) return;

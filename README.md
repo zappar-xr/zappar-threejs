@@ -61,7 +61,7 @@ You may also be interested in:
          * [Head Masking](#head-masking)
          * [Instant World Tracking](#instant-world-tracking)
 
-<!-- Added by: zapparadmin, at: Mon Mar  8 15:17:27 GMT 2021 -->
+<!-- Added by: zapparadmin, at: Wed Apr  7 12:03:54 BST 2021 -->
 
 <!--te-->
 </details>
@@ -94,7 +94,7 @@ You can use this library by downloading a standalone zip containing the necessar
 ### Standalone Download
 
 Download the bundle from:
-https://libs.zappar.com/zappar-threejs/0.3.8/zappar-threejs.zip
+https://libs.zappar.com/zappar-threejs/0.3.11/zappar-threejs.zip
 
 
 Unzip into your web project and reference from your HTML like this:
@@ -106,7 +106,7 @@ Unzip into your web project and reference from your HTML like this:
 
 Reference the zappar.js library from your HTML like this:
 ```html
-<script src="https://libs.zappar.com/zappar-threejs/0.3.8/zappar-threejs.js"></script>
+<script src="https://libs.zappar.com/zappar-threejs/0.3.11/zappar-threejs.js"></script>
 ```
 
 ### NPM Webpack Package

@@ -1,4 +1,4 @@
-const VERSION = "0.3.8";
+const VERSION = "0.3.11";
 console.log(`Zappar for ThreeJS v${VERSION}`);
 
 let skipping = false;

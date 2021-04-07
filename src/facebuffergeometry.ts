@@ -1,7 +1,6 @@
-import * as THREE from "three";
+import { THREE }  from "./three";
 import { FaceMesh, FaceAnchor } from "@zappar/zappar";
 import { FaceAnchorGroup } from "./faceanchorgroup";
-import { BufferAttribute } from "three";
 import { FaceMeshLoader } from "./facemeshloader";
 
 let faceMeshSingleton: FaceMesh | undefined;
@@ -42,7 +41,7 @@ export class FaceBufferGeometry extends THREE.BufferGeometry {
     private _updateUVs() {
         if (this._hasSetUVs) return;
         if (this._faceMesh.uvs.length === 0) return;
-        this.setAttribute("uv", new BufferAttribute(this._faceMesh.uvs, 2));
+        this.setAttribute("uv", new THREE.BufferAttribute(this._faceMesh.uvs, 2));
         this._hasSetUVs = true;
     }
 
@@ -53,7 +52,7 @@ export class FaceBufferGeometry extends THREE.BufferGeometry {
     public set calculateNormals(b: boolean) {
         this._calculateNormals = b;
         if (!this._calculateNormals) {
-            // TODO - deprecated 
+            // TODO - deprecated
             this.removeAttribute("normal");
             delete this._normals;
         }
@@ -76,19 +75,19 @@ export class FaceBufferGeometry extends THREE.BufferGeometry {
         this._faceMesh.updateFromIdentityExpression(identity, expression);
         if (!this._vertices) {
             this._vertices = new Float32Array(this._faceMesh.vertices.length);
-            this._verticesAttribute = new BufferAttribute(this._vertices, 3);
+            this._verticesAttribute = new THREE.BufferAttribute(this._vertices, 3);
             this.setAttribute("position", this._verticesAttribute);
         }
         this._vertices.set(this._faceMesh.vertices);
         if (this._verticesAttribute) this._verticesAttribute.needsUpdate = true;
 
         this.computeBoundingSphere();
-        
+
         if (!this.calculateNormals) return;
-        
+
         if (!this._normals) {
             this._normals = new Float32Array(this._faceMesh.normals.length);
-            this._normalsAttribute = new BufferAttribute(this._normals, 3);
+            this._normalsAttribute = new THREE.BufferAttribute(this._normals, 3);
             this.setAttribute("normal", this._normalsAttribute);
         }
         this._normals.set(this._faceMesh.normals);
