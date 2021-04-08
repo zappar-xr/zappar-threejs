@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.12] - 2021-04-08
+## Changed
+ - `Camera` source options now take `HTMLImageElement` | `HTMLVideoElement` | `string` instead of `CameraSource` | `string`.
+
 ## [0.3.11] - 2021-04-07
  - Updated ThreeJs to 0.127.0
 

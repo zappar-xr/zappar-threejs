@@ -15,16 +15,16 @@ export enum CameraMirrorMode {
     CSS
 }
 
-// Require a pipeline
-type HTMLSourceConstructor = { pipeline: Zappar.Pipeline, rearCameraSource? : Zappar.HTMLElementSource, userCameraSource? : Zappar.HTMLElementSource };
-// Optional pipeline
-type VideoDeviceIDConstructor = { pipeline?: Zappar.Pipeline, rearCameraSource? : string, userCameraSource? : string };
+type Source = HTMLImageElement | HTMLVideoElement | string;
 
-type Options = Partial<{
-// Any future options can go here
-}> & (HTMLSourceConstructor | VideoDeviceIDConstructor)
+type SourceOptions = {
+    rearCameraSource? : Source,
+    userCameraSource? : Source,
+};
 
-
+type Options = Zappar.Pipeline | (Partial<{
+    pipeline: Zappar.Pipeline,
+}> & SourceOptions)
 
 
 export class Camera extends THREE.Camera {
@@ -48,23 +48,19 @@ export class Camera extends THREE.Camera {
     private _emptyScene = new THREE.Scene();
     private _emptyTarget = new THREE.WebGLRenderTarget(2, 2);
 
-    constructor(opts?: Zappar.Pipeline | Options) {
+    constructor(opts?: Options) {
         super();
-        // use pipeline from option/inside option object, else construct one
+
         this.pipeline = opts instanceof Zappar.Pipeline? opts : opts?.pipeline || getDefaultPipeline();
         this.rawPose = this.pipeline.cameraPoseDefault();
 
-        if(!(opts instanceof Zappar.Pipeline)) {
-            // If supplied camera source is a string, construct source using provided video device ID.
-            // else if camera source is an object, use it.
-            // If neither of the above, default to constructing the sources ourselves.
-            this.rearCameraSource = typeof opts?.rearCameraSource == 'string' ? new CameraSource(opts.rearCameraSource, this.pipeline) : opts?.rearCameraSource || new CameraSource(Zappar.cameraDefaultDeviceID(), this.pipeline);
-            this.userCameraSource = typeof opts?.userCameraSource == 'string' ? new CameraSource(opts.userCameraSource, this.pipeline) : opts?.userCameraSource || new CameraSource(Zappar.cameraDefaultDeviceID(true), this.pipeline);
-        } else { // No sources provided, construct defaults
+        if( opts && !(opts instanceof Zappar.Pipeline)) {
+            this.rearCameraSource = this._cameraSourceFromOpts(opts.rearCameraSource);
+            this.userCameraSource = this._cameraSourceFromOpts(opts.userCameraSource, true);
+        } else {
             this.rearCameraSource =  new CameraSource(Zappar.cameraDefaultDeviceID(), this.pipeline);
             this.userCameraSource =  new CameraSource(Zappar.cameraDefaultDeviceID(true), this.pipeline);
         }
-
 
 
         this.matrixAutoUpdate = false;
@@ -75,6 +71,13 @@ export class Camera extends THREE.Camera {
         const immediate = new THREE.ImmediateRenderObject(new THREE.MeshBasicMaterial());
         this._emptyScene.add(immediate);
     }
+
+    private _cameraSourceFromOpts(cameraSource?: Source, frontFacing = false) : CameraSource | Zappar.HTMLElementSource {
+        return cameraSource instanceof Element ?
+            new Zappar.HTMLElementSource(this.pipeline, cameraSource) :
+            new CameraSource(cameraSource || Zappar.cameraDefaultDeviceID(frontFacing), this.pipeline);
+    }
+
 
     private _pause() {
         this.userCameraSource.pause();

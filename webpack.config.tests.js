@@ -8,7 +8,8 @@ baseConfig.entry = {
     instantTrackingTest: "./tests/instant-tracking.ts",
     faceTrackingTest: "./tests/face-tracking.ts",
     faceLandmarkTest: "./tests/face-landmark.ts",
-    headMaskTest: "./tests/head-mask.ts"
+    headMaskTest: "./tests/head-mask.ts",
+    htmlSource: "./tests/htmlSource.ts"
 }
 
 baseConfig.output = {
@@ -52,6 +53,13 @@ baseConfig.plugins = [
         favicon: "./tests/assets/favicon.png",
         title: 'Zappar Universal AR',
         chunks: ['headMaskTest']
+    }),
+    new HtmlWebpackPlugin({
+        template: './tests/index.html',
+        filename: 'htmlSource.html',
+        favicon: "./tests/assets/favicon.png",
+        title: 'Zappar Universal AR',
+        chunks: ['htmlSource']
     })
 ];
 
