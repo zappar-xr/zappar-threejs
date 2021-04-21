@@ -20,14 +20,15 @@ window.addEventListener("resize", () => {
 
 ZapparThree.glContextSet(renderer.getContext());
 
-let camera = new ZapparThree.Camera();
+const camera = new ZapparThree.Camera();
 
-let imgUrl = require("file-loader!./face.png").default;
-let img = document.createElement("img");
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const imgUrl = require("file-loader!./face.png").default;
+const img = document.createElement("img");
 img.src = imgUrl;
 
 img.onload = function() {
-    let source = new ZapparThree.HTMLElementSource(img);
+    const source = new ZapparThree.HTMLElementSource(img);
     source.start();
     frame();
 }

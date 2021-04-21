@@ -164,6 +164,7 @@ export class Camera extends THREE.Camera {
 
     updateMatrixWorld(force?: boolean) : void {
         this.matrix.fromArray(this.rawPose);
+        this.matrix.decompose(this.position, this.quaternion, this.scale);
         super.updateMatrixWorld(force);
     }
 

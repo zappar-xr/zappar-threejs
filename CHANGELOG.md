@@ -1,6 +1,17 @@
 # Changelog
 
-## [0.3.12] - 2021-04-08
+## [0.3.23] - 2021-04-21
+ - Updated `@zappar/zappar`
+ - Tracker groups matrices are now decomposed into the object's respective transforms.
+ - Migrated testing utils to `@zappar/test-utils`
+## Added
+ - Caveats section to `README.MD`
+## Fixed
+ - Version typo in `CHANGELOG.md`
+ - Workaround for deprecated `removeAttribute`
+
+
+## [0.3.22] - 2021-04-08
 ## Changed
  - `Camera` source options now take `HTMLImageElement` | `HTMLVideoElement` | `string` instead of `CameraSource` | `string`.
 

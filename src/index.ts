@@ -1,4 +1,7 @@
-export { skipVersionLog } from './version';
+import { VERSION } from './version';
+
+console.log(`Zappar for ThreeJS v${VERSION}`);
+
 export { Camera, CameraPoseMode, CameraMirrorMode } from "./camera";
 export { ImageAnchorGroup } from "./imageanchorgroup"
 export { ImageTrackerLoader } from "./imagetrackerloader"

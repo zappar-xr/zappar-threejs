@@ -3,7 +3,7 @@ import * as THREE from "three";
 import * as ZapparThree from "../src";
 import { FaceAnchorGroup } from "../src";
 import { renderer, camera } from "./common"
-ZapparThree.skipVersionLog();
+
 const faceTracker = new ZapparThree.FaceTrackerLoader().load();
 const faceMesh = new ZapparThree.FaceMeshLoader().load();
 const textureLoader = new THREE.TextureLoader();

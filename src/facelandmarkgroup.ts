@@ -25,6 +25,7 @@ export class FaceLandmarkGroup extends THREE.Group {
             this.landmark.updateFromFaceAnchor(this.currentAnchor, this._camera.currentMirrorMode === CameraMirrorMode.Poses);
             mat4.multiply(this._pose, this.currentAnchor.pose(this._camera.rawPose, this._camera.currentMirrorMode === CameraMirrorMode.Poses) as mat4, this.landmark.pose as mat4);
             this.matrix.fromArray(this._pose);
+            this.matrix.decompose(this.position, this.quaternion, this.scale);
         }
         super.updateMatrixWorld(force);
     }

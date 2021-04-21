@@ -52,8 +52,9 @@ export class FaceBufferGeometry extends THREE.BufferGeometry {
     public set calculateNormals(b: boolean) {
         this._calculateNormals = b;
         if (!this._calculateNormals) {
-            // TODO - deprecated
-            this.removeAttribute("normal");
+            if(typeof (this as any).removeAttribute === "function"){
+                (this as any).removeAttribute("normal");
+            }
             delete this._normals;
         }
     }

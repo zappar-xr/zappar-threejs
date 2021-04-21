@@ -1,18 +1,17 @@
 import "expect-puppeteer";
-
-import { compareScreenshots, expectConsoleLogs, waitForConsoleLog } from "../utils";
+import * as utils from '@zappar/test-utils';
 import { promises as fs } from "fs";
 
-let CI_COMMIT_TAG = process.env["CI_COMMIT_TAG"] || "CI_COMMIT_TAG";
+const CI_COMMIT_TAG = process.env["CI_COMMIT_TAG"] || "CI_COMMIT_TAG";
 
 jest.setTimeout(60000);
 
-let url = 'https://127.0.0.1:8080/simple.html';
+const url = 'https://127.0.0.1:8080/simple.html';
 
 it('console logs', async () => {
     const page = await browser.newPage();
     page.goto(url);
-    await expectConsoleLogs([
+    await utils.expectConsoleLogs([
         `Zappar for ThreeJS v${CI_COMMIT_TAG}`,
         /Zappar JS v\d*.\d*.\d*/,
         /Zappar CV v\d*.\d*.\d*/,
@@ -28,9 +27,10 @@ it('console logs', async () => {
 it('screenshot', async () => {
     const page = await browser.newPage();
     page.goto(url);
-    await waitForConsoleLog("[Zappar] INFO identity for license check: 127.*", page, 10000);
-    let buffer = await page.screenshot();
+    await utils.waitForConsoleLog("[Zappar] INFO identity for license check: 127.*", page, 10000);
+    const buffer = await page.screenshot();
     await fs.writeFile("test-screenshots/simple.test.png", buffer as Buffer);
-    await compareScreenshots(await fs.readFile("puppeteer/module/simple.test.png"), buffer as Buffer);
+    const diff = await utils.compareScreenshots(await fs.readFile("puppeteer/module/simple.test.png"), buffer as Buffer);
+    await expect(diff).toBeLessThan(10);
     await page.close();
 });

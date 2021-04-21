@@ -23,7 +23,10 @@ export class ImageAnchorGroup extends THREE.Group {
                 this.currentAnchor = this.imageTracker.visible.values().next().value;
             }
         }
-        if (this.currentAnchor) this.matrix.fromArray(this.currentAnchor.pose(this._camera.rawPose, this._camera.currentMirrorMode === CameraMirrorMode.Poses));
+        if (this.currentAnchor) {
+            this.matrix.fromArray(this.currentAnchor.pose(this._camera.rawPose, this._camera.currentMirrorMode === CameraMirrorMode.Poses));
+            this.matrix.decompose(this.position, this.quaternion, this.scale);
+        }
         super.updateMatrixWorld(force);
     }
 }

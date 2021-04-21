@@ -18,6 +18,7 @@ export class InstantWorldAnchorGroup extends THREE.Group {
 
     updateMatrixWorld(force?: boolean) : void {
         this.matrix.fromArray(this.instantTracker.anchor.pose(this._camera.rawPose, this._camera.currentMirrorMode === CameraMirrorMode.Poses));
+        this.matrix.decompose(this.position, this.quaternion, this.scale);
         super.updateMatrixWorld(force);
     }
 }

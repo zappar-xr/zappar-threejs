@@ -24,6 +24,7 @@ export class FaceAnchorGroup extends THREE.Group {
         }
         if (this.currentAnchor) {
             this.matrix.fromArray(this.currentAnchor.pose(this._camera.rawPose, this._camera.currentMirrorMode === CameraMirrorMode.Poses));
+            this.matrix.decompose(this.position, this.quaternion, this.scale);
         }
         super.updateMatrixWorld(force);
     }

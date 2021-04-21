@@ -1,17 +1,17 @@
 import "expect-puppeteer";
 
-import { expectConsoleLogs } from "../utils";
+import * as utils from '@zappar/test-utils';
 
-let CI_COMMIT_TAG = process.env["CI_COMMIT_TAG"] || "CI_COMMIT_TAG";
+const CI_COMMIT_TAG = process.env["CI_COMMIT_TAG"] || "CI_COMMIT_TAG";
 
 jest.setTimeout(60000);
 
-let url = 'https://127.0.0.1:8080/face.html';
+const url = 'https://127.0.0.1:8080/face.html';
 
 it('console logs', async () => {
     const page = await browser.newPage();
     page.goto(url);
-    await expectConsoleLogs([
+    await utils.expectConsoleLogs([
         `Zappar for ThreeJS v${CI_COMMIT_TAG}`,
         /Zappar JS v\d*.\d*.\d*/,
         /Zappar CV v\d*.\d*.\d*/,
