@@ -1,5 +1,12 @@
 # Changelog
 
+
+## [0.3.24] - 2021-04-23
+ - Updated `@zappar/zappar-js`
+## Added
+ - `zNear` and `zFar` options to `ZapparThree.Camera`, allowing custom clipping planes distances.
+
+
 ## [0.3.23] - 2021-04-21
  - Updated `@zappar/zappar`
  - Tracker groups matrices are now decomposed into the object's respective transforms.

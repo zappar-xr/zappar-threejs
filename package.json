@@ -58,7 +58,7 @@
     "three": "0.113.0 - 0.127.0"
   },
   "dependencies": {
-    "@zappar/zappar": "^0.3.9",
+    "@zappar/zappar": "^0.3.10",
     "@zappar/zapworks-cli": "^0.6.17"
   }
 }

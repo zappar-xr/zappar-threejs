@@ -43,6 +43,9 @@ You may also be interested in:
       * [Initialization and Camera Processing](#initialization-and-camera-processing)
          * [Starting the GL Context](#starting-the-gl-context)
          * [Constructing the Camera](#constructing-the-camera)
+         * [Options](#options)
+            * [Custom Video Devices](#custom-video-devices)
+            * [Clipping Planes](#clipping-planes)
          * [Permissions](#permissions)
          * [Starting the Camera](#starting-the-camera)
          * [Processing Camera Frames](#processing-camera-frames)
@@ -63,7 +66,7 @@ You may also be interested in:
       * [Caveats](#caveats)
          * [Texture Encoding](#texture-encoding)
 
-<!-- Added by: zapparadmin, at: Wed Apr 21 14:06:10 BST 2021 -->
+<!-- Added by: zapparadmin, at: Fri Apr 23 15:51:27 BST 2021 -->
 
 <!--te-->
 </details>
@@ -96,7 +99,7 @@ You can use this library by downloading a standalone zip containing the necessar
 ### Standalone Download
 
 Download the bundle from:
-https://libs.zappar.com/zappar-threejs/0.3.23/zappar-threejs.zip
+https://libs.zappar.com/zappar-threejs/0.3.24/zappar-threejs.zip
 
 
 Unzip into your web project and reference from your HTML like this:
@@ -108,7 +111,7 @@ Unzip into your web project and reference from your HTML like this:
 
 Reference the zappar.js library from your HTML like this:
 ```html
-<script src="https://libs.zappar.com/zappar-threejs/0.3.23/zappar-threejs.js"></script>
+<script src="https://libs.zappar.com/zappar-threejs/0.3.24/zappar-threejs.js"></script>
 ```
 
 ### NPM Webpack Package
@@ -322,13 +325,28 @@ The camera object provides a THREE.Texture object containing the camera feed. Yo
 ```ts
 scene.background = camera.backgroundTexture;
 ```
+### Options
 
-Custom video device IDs can be provided as options passed into `ZapparThree.Camera` constructor:
+Options may be passed into the `ZapparThree.Camera` constructor.
+
+#### Custom Video Devices
+
 ```ts
 let camera = new ZapparThree.Camera(
     {
         rearCameraSource:'csO9c0YpAf274OuCPUA53CNE0YHlIr2yXCi+SqfBZZ8=',
         userCameraSource: 'RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM='
+    }
+);
+```
+
+#### Clipping Planes
+
+```ts
+let camera = new ZapparThree.Camera(
+    { // These values are defaults.
+        zNear: 0.1,
+        zFar: 100
     }
 );
 ```

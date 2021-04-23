@@ -24,6 +24,8 @@ type SourceOptions = {
 
 type Options = Zappar.Pipeline | (Partial<{
     pipeline: Zappar.Pipeline,
+    zNear : number,
+    zFar : number
 }> & SourceOptions)
 
 
@@ -48,6 +50,9 @@ export class Camera extends THREE.Camera {
     private _emptyScene = new THREE.Scene();
     private _emptyTarget = new THREE.WebGLRenderTarget(2, 2);
 
+    private zFar;
+    private zNear;
+
     constructor(opts?: Options) {
         super();
 
@@ -55,6 +60,9 @@ export class Camera extends THREE.Camera {
         this.rawPose = this.pipeline.cameraPoseDefault();
 
         if( opts && !(opts instanceof Zappar.Pipeline)) {
+            this.zNear = opts.zNear ? opts.zNear : 0.1;
+            this.zFar = opts.zFar ? opts.zFar : 100;
+
             this.rearCameraSource = this._cameraSourceFromOpts(opts.rearCameraSource);
             this.userCameraSource = this._cameraSourceFromOpts(opts.userCameraSource, true);
         } else {
@@ -136,7 +144,7 @@ export class Camera extends THREE.Camera {
 
         // Get the projection matrix for the camera from the Zappar library
         const model = this.pipeline.cameraModel();
-        const projection = Zappar.projectionMatrixFromCameraModel(model, renderer.domElement.width, renderer.domElement.height);
+        const projection = Zappar.projectionMatrixFromCameraModel(model, renderer.domElement.width, renderer.domElement.height, this.zNear, this.zFar);
         this.projectionMatrix.fromArray(projection);
 
         if(typeof (this.projectionMatrixInverse as any).invert === 'function'){
