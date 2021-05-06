@@ -44,7 +44,7 @@
     "jest-puppeteer": "^4.4.0",
     "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
-    "puppeteer": "^7.1.0",
+    "puppeteer": "^9.1.1",
     "three": "^0.127.0",
     "ts-jest": "^26.5.1",
     "ts-loader": "^8.0.13",
