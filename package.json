@@ -11,17 +11,23 @@
     "build:standalone": "webpack --config=webpack.config.standalone.js --mode=production",
     "build:standalone-debug": "webpack --config=webpack.config.standalone.dev.js --mode=development",
     "build:module": "tsc",
-    "lint": "eslint ./src --ext .ts ",
-    "lint:fix": "eslint --fix ./src --ext .ts",
     "build:tests": "webpack --config=webpack.config.tests.js --mode=development",
-    "tests": "npm run build:tests && webpack serve --mode=development --config=webpack.config.tests.js",
+    "build": "npm run build:standalone && npm run build:module && npm run build:tests",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "npm run lint -- --fix",
+    "test": "npm run build && jest",
+    "test:post": "npm run build:standalone && npm run build:module && webpack --config=webpack.config.tests.js --mode=development --env POST_TEST && jest",
+    "test:nobuild": "jest",
+    "tests": "npm run build && webpack serve --mode development --config=webpack.config.tests.js",
+    "tests:nobuild": "webpack serve --mode development --config=webpack.config.tests.js",
     "start": "npm run tests",
-    "test-module": "jest puppeteer/module",
-    "test-standalone": "jest puppeteer/standalone",
-    "webpack-puppeteer": "webpack --config=webpack.config.puppeteer.js --mode=development && webpack serve --config=webpack.config.puppeteer.js",
-    "standalone-test-serve": "concurrently 'zapworks serve --port 7010 umd' 'zapworks serve --port 7011 puppeteer-standalone-dist' || true"
+    "kill-test-process": "lsof -P | grep ':8081' | awk '{print $2}' | xargs kill -9",
+    "typedoc": "typedoc --out docs src/index.ts --excludePrivate --excludeProtected --theme minimal"
   },
-  "author": "Zappar Limited",
+  "author": {
+    "name": "Zappar Limited",
+    "url": "https://www.zappar.com/"
+  },
   "license": "MIT",
   "files": [
     "README.md",
@@ -30,35 +36,55 @@
     "umd/**/*"
   ],
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "@types/jest-environment-puppeteer": "^4.4.1",
-    "@types/pixelmatch": "^5.2.2",
-    "@types/pngjs": "^6.0.0",
-    "@types/three": "^0.127.0",
-    "@typescript-eslint/eslint-plugin": "^4.11.1",
-    "@typescript-eslint/parser": "^4.11.1",
+    "@types/jest-image-snapshot": "^4.3.0",
+    "@types/three": "^0.128.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
     "@zappar/test-utils": "0.0.3",
-    "concurrently": "^6.0.0",
-    "eslint": "^7.17.0",
-    "html-webpack-plugin": "^5.3.0",
+    "copy-webpack-plugin": "^9.0.0",
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-tsdoc": "^0.2.14",
+    "eslint-webpack-plugin": "^2.5.4",
+    "html-webpack-plugin": "^5.3.1",
+    "husky": "^4.3.8",
     "jest": "^26.6.3",
-    "jest-puppeteer": "^4.4.0",
-    "pixelmatch": "^5.2.1",
-    "pngjs": "^6.0.0",
+    "jest-image-snapshot": "^4.5.0",
+    "jest-puppeteer": "^5.0.3",
+    "lint-staged": "^11.0.0",
+    "node-fetch": "^2.6.1",
+    "prettier": "^2.3.1",
     "puppeteer": "^7.1.0",
     "three": "^0.127.0",
-    "ts-jest": "^26.5.1",
-    "ts-loader": "^8.0.13",
+    "ts-jest": "^26.5.6",
+    "ts-loader": "^9.2.2",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.3",
-    "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1",
-    "webpack-dev-server": "^3.11.2"
+    "typedoc": "^0.20.36",
+    "typescript": "4.1.5",
+    "webpack": "^5.38.1",
+    "webpack-cdn-plugin": "^3.3.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.1"
   },
   "peerDependencies": {
-    "three": "0.113.0 - 0.127.0"
+    "three": "0.118.0 - 0.128.0"
   },
   "dependencies": {
-    "@zappar/zappar": "^0.3.10",
-    "@zappar/zapworks-cli": "^0.6.17"
+    "@zappar/zappar": "^0.3.11"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.(ts|tsx)": [
+      "npm run --silent lint:fix"
+    ]
   }
 }

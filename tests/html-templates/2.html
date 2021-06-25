@@ -1,0 +1,58 @@
+<!-- [MANUAL] Standard single canvas template for manual UAR testing -->
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,user-scalable=no,minimal-ui" />
+    </head>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #canvas-holder {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: row;
+            height: 50px;
+            width: 100%;
+        }
+
+        .options > select {
+            width: 33%;
+        }
+    </style>
+    <body>
+        <div id="canvas-holder"></div>
+        <div class="options">
+            <select id="cameraSelect">
+                <option selected value="default">Default Camera</option>
+                <option value="userFacing">Use Facing Camera</option>
+            </select>
+            <select id="poseSelect">
+                <option selected value="default">Camera Pose Default</option>
+                <option value="attitude">Camera Pose With Device Attitude</option>
+                <option value="anchor">Camera Pose With Anchor Origin</option>
+            </select>
+            <select id="mirrorSelect">
+                <option selected value="nomirror">No Mirror</option>
+                <option value="poses">Mirror Poses</option>
+                <option value="css">CSS ScaleX</option>
+            </select>
+        </div>
+    </body>
+</html>

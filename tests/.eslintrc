@@ -1,0 +1,6 @@
+{
+    "rules": {
+        "no-restricted-imports": "off",
+        "@typescript-eslint/no-var-requires" : "off"
+    }
+}

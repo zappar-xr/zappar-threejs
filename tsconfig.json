@@ -5,8 +5,9 @@
       "declaration": true,
       "outDir": "./lib",
       "lib": ["es2015", "dom"],
-      "strict": true
+      "strict": true,
+      "types": [ "@types/three", "jest", "puppeteer", "ts-jest", "jest-environment-puppeteer"]
     },
-    "include": ["src"],
-    "exclude": ["node_modules", "**/__tests__/*"]
+    "include": ["src", "tests"],
+    "exclude": ["node_modules"]
   }
