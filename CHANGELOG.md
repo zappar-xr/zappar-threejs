@@ -1,6 +1,6 @@
 # Changelog
 
-## [0.3.25] - 2021-06-25
+## [0.3.26] - 2021-06-25
 
 - Updated dependencies.
   - Bumped `three` support to r128.
