@@ -298,7 +298,8 @@ export class Camera extends THREE.Camera {
     this.renderWidth = renderer.domElement.width;
     this.renderHeight = renderer.domElement.height;
 
-    this.updateProjectionMatrix();
+    // eslint-disable-next-line no-underscore-dangle
+    this._updateProjectionMatrix();
 
     // Get the pose of the camera from the Zappar library
     switch (this.poseMode) {
@@ -319,7 +320,8 @@ export class Camera extends THREE.Camera {
     this.updateBackgroundTexture(renderer);
   }
 
-  public updateProjectionMatrix() {
+  // eslint-disable-next-line no-underscore-dangle
+  public _updateProjectionMatrix() {
     // Get the projection matrix for the camera from the Zappar library
     const model = this.pipeline.cameraModel();
     const projection = Zappar.projectionMatrixFromCameraModel(model, this.renderWidth, this.renderHeight, this.zNear, this.zFar);
