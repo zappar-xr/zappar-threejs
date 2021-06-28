@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.27] - 2021-06-28
+
+### Fixed
+
+- An issue where `ZapparCamera` would not work on react-three-fiber.
+
 ## [0.3.26] - 2021-06-25
 
 - Updated dependencies.

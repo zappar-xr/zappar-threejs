@@ -161,6 +161,10 @@ export class Camera extends THREE.Camera {
 
   private zNear;
 
+  private renderWidth = 0;
+
+  private renderHeight = 0;
+
   /**
    * Constructs a new Camera.
    * @param pipeline - The pipeline that this tracker will operate within.
@@ -291,7 +295,10 @@ export class Camera extends THREE.Camera {
       this.hasSetCSSScaleX = true;
     }
 
-    this.updateProjectionMatrix(renderer);
+    this.renderWidth = renderer.domElement.width;
+    this.renderHeight = renderer.domElement.height;
+
+    this.updateProjectionMatrix();
 
     // Get the pose of the camera from the Zappar library
     switch (this.poseMode) {
@@ -312,10 +319,10 @@ export class Camera extends THREE.Camera {
     this.updateBackgroundTexture(renderer);
   }
 
-  public updateProjectionMatrix(renderer: THREE.WebGLRenderer) {
+  public updateProjectionMatrix() {
     // Get the projection matrix for the camera from the Zappar library
     const model = this.pipeline.cameraModel();
-    const projection = Zappar.projectionMatrixFromCameraModel(model, renderer.domElement.width, renderer.domElement.height, this.zNear, this.zFar);
+    const projection = Zappar.projectionMatrixFromCameraModel(model, this.renderWidth, this.renderHeight, this.zNear, this.zFar);
     this.projectionMatrix.fromArray(projection);
 
     if (typeof (this.projectionMatrixInverse as any).invert === "function") {
