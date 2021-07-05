@@ -51,6 +51,7 @@ You may also be interested in:
          * [Permissions](#permissions)
          * [Starting the Camera](#starting-the-camera)
          * [Processing Camera Frames](#processing-camera-frames)
+         * [Realtime Camera-based Reflections](#realtime-camera-based-reflections)
          * [Camera Pose](#camera-pose)
       * [Tracking](#tracking)
          * [Image Tracking](#image-tracking)
@@ -69,7 +70,7 @@ You may also be interested in:
          * [Texture Encoding](#texture-encoding)
       * [Links and Resources](#links-and-resources)
 
-<!-- Added by: zapparadmin, at: Mon Jun 28 17:10:20 BST 2021 -->
+<!-- Added by: zapparadmin, at: Mon Jul  5 12:03:15 BST 2021 -->
 
 <!--te-->
 </details>
@@ -100,7 +101,7 @@ You can use this library by downloading a standalone zip containing the necessar
 ### Standalone Download
 
 Download the bundle from:
-<https://libs.zappar.com/zappar-threejs/0.3.27/zappar-threejs.zip>
+<https://libs.zappar.com/zappar-threejs/0.3.28/zappar-threejs.zip>
 
 Unzip into your web project and reference from your HTML like this:
 
@@ -113,7 +114,7 @@ Unzip into your web project and reference from your HTML like this:
 Reference the zappar.js library from your HTML like this:
 
 ```html
-<script src="https://libs.zappar.com/zappar-threejs/0.3.27/zappar-threejs.js"></script>
+<script src="https://libs.zappar.com/zappar-threejs/0.3.28/zappar-threejs.js"></script>
 ```
 
 ### NPM Webpack Package
@@ -442,6 +443,32 @@ Call the following function once an animation frame (e.g. during your `requestAn
 
 ```ts
 camera.updateFrame(renderer);
+```
+
+### Realtime Camera-based Reflections
+
+The SDK provides an automatically generated environment map that's useful if you're using materials that support reflections (e.g. `MeshStandardMaterial`, `MeshPhysicalMaterial`). The map uses the camera feed to create an approximate environment that can add some realism to your scene.
+
+To use the map, first construct an instance:
+```ts
+const envMap = new ZapparThree.CameraEnvironmentMap();
+```
+
+Attach the map to your scene to affect all relevant materials:
+```ts
+scene.environment = envMap.environmentMap;
+```
+
+Or attach it to specific materials, if you prefer:
+```ts
+material.envMap = envMap.environmentMap;
+```
+
+Finally, call `update(...)` on the map each frame, between updating the camera and rendering the scene:
+```ts
+camera.updateFrame(renderer);
+envMap.update(renderer, camera);
+renderer.render(scene, camera);
 ```
 
 ### Camera Pose

@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.28] - 2021-07-05
+
+### Added
+
+- Realtime Camera-based environment map. This is exported as `CameraEnvironmentMap`.
+- `Realtime Camera-based Reflections` section to `README.md`
+- `CameraEnvironmentMap` tests.
+
 ## [0.3.27] - 2021-06-28
 
 ### Fixed

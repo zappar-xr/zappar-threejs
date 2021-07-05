@@ -14,6 +14,8 @@ export { FaceMeshLoader } from "./loaders/facemeshloader";
 export { HeadMaskMesh } from "./mesh/headmaskmesh";
 export { HeadMaskMeshLoader } from "./loaders/headmaskmeshloader";
 export { LoadingManager, LoaderStyle, DefaultLoaderUI } from "./loaders/loadingmanager";
+export { CameraEnvironmentMap } from "./cameraenvironmentmap";
+
 export {
   ImageTracker,
   InstantWorldTracker,
