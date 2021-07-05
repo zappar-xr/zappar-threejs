@@ -2723,6 +2723,9 @@ img {
 			<a href="classes/camera.html" class="tsd-kind-icon">Camera</a>
 		</li>
 		<li class=" tsd-kind-class">
+			<a href="classes/cameraenvironmentmap.html" class="tsd-kind-icon">Camera<wbr>Environment<wbr>Map</a>
+		</li>
+		<li class=" tsd-kind-class">
 			<a href="classes/camerasource.html" class="tsd-kind-icon">Camera<wbr>Source</a>
 		</li>
 		<li class=" tsd-kind-class">
@@ -2900,6 +2903,7 @@ img {
 									<li><a href="#permissions">Permissions</a></li>
 									<li><a href="#starting-the-camera">Starting the Camera</a></li>
 									<li><a href="#processing-camera-frames">Processing Camera Frames</a></li>
+									<li><a href="#realtime-camera-based-reflections">Realtime Camera-based Reflections</a></li>
 									<li><a href="#camera-pose">Camera Pose</a></li>
 								</ul>
 							</li>
@@ -2930,7 +2934,7 @@ img {
 						</ul>
 					</li>
 				</ul>
-				<!-- Added by: zapparadmin, at: Mon Jun 28 17:10:20 BST 2021 -->
+				<!-- Added by: zapparadmin, at: Mon Jul  5 12:03:15 BST 2021 -->
 				<!--te-->
 			</details>
 			<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
@@ -2978,7 +2982,7 @@ img {
 				<h3>Standalone Download</h3>
 			</a>
 			<p>Download the bundle from:
-			<a href="https://libs.zappar.com/zappar-threejs/0.3.27/zappar-threejs.zip">https://libs.zappar.com/zappar-threejs/0.3.27/zappar-threejs.zip</a></p>
+			<a href="https://libs.zappar.com/zappar-threejs/0.3.28/zappar-threejs.zip">https://libs.zappar.com/zappar-threejs/0.3.28/zappar-threejs.zip</a></p>
 			<p>Unzip into your web project and reference from your HTML like this:</p>
 			<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;zappar-threejs.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
 </code></pre>
@@ -2986,7 +2990,7 @@ img {
 				<h3>CDN</h3>
 			</a>
 			<p>Reference the zappar.js library from your HTML like this:</p>
-			<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;https://libs.zappar.com/zappar-threejs/0.3.27/zappar-threejs.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
+			<pre><code class="language-html"><span style="color: #800000">&lt;script</span><span style="color: #000000FF"> </span><span style="color: #FF0000">src</span><span style="color: #000000FF">=</span><span style="color: #0000FF">&quot;https://libs.zappar.com/zappar-threejs/0.3.28/zappar-threejs.js&quot;</span><span style="color: #800000">&gt;&lt;/script&gt;</span>
 </code></pre>
 			<a href="#npm-webpack-package" id="npm-webpack-package" style="color: inherit; text-decoration: none;">
 				<h3>NPM Webpack Package</h3>
@@ -3264,6 +3268,24 @@ img {
 			</a>
 			<p>Call the following function once an animation frame (e.g. during your <code>requestAnimationFrame</code> function) in order to process incoming camera frames:</p>
 			<pre><code class="language-ts"><span style="color: #001080">camera</span><span style="color: #000000">.</span><span style="color: #795E26">updateFrame</span><span style="color: #000000">(</span><span style="color: #001080">renderer</span><span style="color: #000000">);</span>
+</code></pre>
+			<a href="#realtime-camera-based-reflections" id="realtime-camera-based-reflections" style="color: inherit; text-decoration: none;">
+				<h3>Realtime Camera-based Reflections</h3>
+			</a>
+			<p>The SDK provides an automatically generated environment map that&#39;s useful if you&#39;re using materials that support reflections (e.g. <code>MeshStandardMaterial</code>, <code>MeshPhysicalMaterial</code>). The map uses the camera feed to create an approximate environment that can add some realism to your scene.</p>
+			<p>To use the map, first construct an instance:</p>
+			<pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">envMap</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">ZapparThree</span><span style="color: #000000">.</span><span style="color: #795E26">CameraEnvironmentMap</span><span style="color: #000000">();</span>
+</code></pre>
+			<p>Attach the map to your scene to affect all relevant materials:</p>
+			<pre><code class="language-ts"><span style="color: #001080">scene</span><span style="color: #000000">.</span><span style="color: #001080">environment</span><span style="color: #000000"> = </span><span style="color: #001080">envMap</span><span style="color: #000000">.</span><span style="color: #001080">environmentMap</span><span style="color: #000000">;</span>
+</code></pre>
+			<p>Or attach it to specific materials, if you prefer:</p>
+			<pre><code class="language-ts"><span style="color: #001080">material</span><span style="color: #000000">.</span><span style="color: #001080">envMap</span><span style="color: #000000"> = </span><span style="color: #001080">envMap</span><span style="color: #000000">.</span><span style="color: #001080">environmentMap</span><span style="color: #000000">;</span>
+</code></pre>
+			<p>Finally, call <code>update(...)</code> on the map each frame, between updating the camera and rendering the scene:</p>
+			<pre><code class="language-ts"><span style="color: #001080">camera</span><span style="color: #000000">.</span><span style="color: #795E26">updateFrame</span><span style="color: #000000">(</span><span style="color: #001080">renderer</span><span style="color: #000000">);</span>
+<span style="color: #001080">envMap</span><span style="color: #000000">.</span><span style="color: #795E26">update</span><span style="color: #000000">(</span><span style="color: #001080">renderer</span><span style="color: #000000">, </span><span style="color: #001080">camera</span><span style="color: #000000">);</span>
+<span style="color: #001080">renderer</span><span style="color: #000000">.</span><span style="color: #795E26">render</span><span style="color: #000000">(</span><span style="color: #001080">scene</span><span style="color: #000000">, </span><span style="color: #001080">camera</span><span style="color: #000000">);</span>
 </code></pre>
 			<a href="#camera-pose" id="camera-pose" style="color: inherit; text-decoration: none;">
 				<h3>Camera Pose</h3>
@@ -3586,6 +3608,7 @@ img {
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-class"><a href="classes/barcodefinder.html" class="tsd-kind-icon">Barcode<wbr>Finder</a></li>
 							<li class="tsd-kind-class"><a href="classes/camera.html" class="tsd-kind-icon">Camera</a></li>
+							<li class="tsd-kind-class"><a href="classes/cameraenvironmentmap.html" class="tsd-kind-icon">Camera<wbr>Environment<wbr>Map</a></li>
 							<li class="tsd-kind-class"><a href="classes/camerasource.html" class="tsd-kind-icon">Camera<wbr>Source</a></li>
 							<li class="tsd-kind-class"><a href="classes/defaultloaderui.html" class="tsd-kind-icon">Default<wbr>LoaderUI</a></li>
 							<li class="tsd-kind-class"><a href="classes/faceanchorgroup.html" class="tsd-kind-icon">Face<wbr>Anchor<wbr>Group</a></li>
@@ -3669,7 +3692,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">on<wbr>Frame<wbr>Update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Event</span><span class="tsd-signature-symbol"> = ...</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/094de59/src/defaultpipeline.ts#L9">src/defaultpipeline.ts:9</a></li>
+						<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/24aa02e/src/defaultpipeline.ts#L9">src/defaultpipeline.ts:9</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -3738,7 +3761,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/094de59/src/defaultpipeline.ts#L14">src/defaultpipeline.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/24aa02e/src/defaultpipeline.ts#L14">src/defaultpipeline.ts:14</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-returns-title">Returns <a href="classes/pipeline.html" class="tsd-signature-type" data-tsd-kind="Class">Pipeline</a></h4>
@@ -3758,7 +3781,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/094de59/src/defaultpipeline.ts#L126">src/defaultpipeline.ts:126</a></li>
+								<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/24aa02e/src/defaultpipeline.ts#L126">src/defaultpipeline.ts:126</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -3781,7 +3804,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/094de59/src/defaultpipeline.ts#L117">src/defaultpipeline.ts:117</a></li>
+								<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/24aa02e/src/defaultpipeline.ts#L117">src/defaultpipeline.ts:117</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
