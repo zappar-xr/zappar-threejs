@@ -42,7 +42,7 @@
     "@types/three": "^0.128.0",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
     "@typescript-eslint/parser": "^4.26.1",
-    "@zappar/test-utils": "0.0.3",
+    "@zappar/jest-console-logs": "^1.0.0",
     "copy-webpack-plugin": "^9.0.0",
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
@@ -75,7 +75,7 @@
     "three": "0.118.0 - 0.128.0"
   },
   "dependencies": {
-    "@zappar/zappar": "^0.3.11"
+    "@zappar/zappar": "^0.3.13"
   },
   "husky": {
     "hooks": {

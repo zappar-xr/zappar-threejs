@@ -1,5 +1,5 @@
 import "expect-puppeteer";
-import * as utils from "@zappar/test-utils";
+import * as utils from "@zappar/jest-console-logs";
 import { toMatchImageSnapshot } from "jest-image-snapshot";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const getStandaloneVersions = require("../standalone-versions");
@@ -16,9 +16,9 @@ const test = (url: string, description: string) => {
   describe(`${description}`, () => {
     it("logs screenshot", async () => {
       const page = await browser.newPage();
-      page.goto(url);
-      await utils.expectConsoleLogs(
-        [
+      page.goto(url, { timeout: 0 });
+      await utils.expectLogs({
+        expected: [
           `Zappar for ThreeJS v${CI_COMMIT_TAG}`,
           /Zappar JS v\d*.\d*.\d*/,
           /Zappar CV v\d*.\d*.\d*/,
@@ -29,19 +29,8 @@ const test = (url: string, description: string) => {
           "Anchor is visible",
         ],
         page,
-        120000,
-        new Set([
-          "[Zappar] INFO no display data",
-          "[Zappar] INFO identity for license check: 127.*",
-          "[HMR] Waiting for update signal from WDS...",
-          "[WDS] Hot Module Replacement enabled.",
-          "[WDS] Live Reloading enabled.",
-          "[HMR] App is up to date.",
-          "[HMR] Nothing hot updated.",
-          "[WDS] App hot update...",
-          "[WDS] App updated. Recompiling...",
-        ])
-      );
+        timeoutMs: 120000,
+      });
 
       const screenshot = await page.screenshot();
       expect(screenshot).toMatchImageSnapshot({

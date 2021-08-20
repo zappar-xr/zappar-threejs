@@ -57,6 +57,22 @@ export enum CameraMirrorMode {
 type Source = HTMLImageElement | HTMLVideoElement | string;
 
 /**
+ * The directions that the camera can face.
+ */
+enum CameraDirection {
+  /** The camera is not running.
+   * This is the default mode for the camera.
+   */
+  None,
+
+  /** In this mode, the camera is always facing the user. */
+  User,
+
+  /** In this mode, the camera is always facing away from the user. */
+  Rear,
+}
+
+/**
  * Rear and user camera source options.
  * @property rearCameraSource? - The camera source which will be used for the rear camera.
  * @property userCameraSource? - The camera source which will be used for the user camera.
@@ -149,7 +165,7 @@ export class Camera extends THREE.Camera {
    */
   public userCameraSource: CameraSource | Zappar.HTMLElementSource;
 
-  private cameraRunningRear: boolean | null = null;
+  private cameraDirection: CameraDirection = CameraDirection.None;
 
   private hasSetCSSScaleX = false;
 
@@ -225,8 +241,17 @@ export class Camera extends THREE.Camera {
    * Starting a given source pauses any other sources within the same pipeline.
    */
   private resume() {
-    if (this.cameraRunningRear === null) return;
-    this.cameraRunningRear ? this.rearCameraSource.start() : this.userCameraSource.start();
+    switch (this.cameraDirection) {
+      case CameraDirection.User:
+        this.userCameraSource.start();
+        break;
+      case CameraDirection.Rear:
+        this.rearCameraSource.start();
+        break;
+      default:
+        // do not start any camera
+        break;
+    }
   }
 
   /**
@@ -234,8 +259,16 @@ export class Camera extends THREE.Camera {
    * @param userFacing - If true, starts the user facing camera. (i.e selfie).
    */
   public start(userFacing?: boolean): void {
-    userFacing ? this.userCameraSource.start() : this.rearCameraSource.start();
-    this.cameraRunningRear = !userFacing;
+    this.cameraDirection = userFacing ? CameraDirection.User : CameraDirection.Rear;
+    this.resume();
+  }
+
+  /**
+   * Stops the camera source.
+   */
+  public stop(): void {
+    this.cameraDirection = CameraDirection.None;
+    this.pause();
   }
 
   /**

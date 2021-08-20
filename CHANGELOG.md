@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.3.29] - 2021-08-20
+
+- Updated `@zappar/zappar`.
+
+### Added
+
+- `.stop()` method to the `ZapparThree.Camera`, this is used to stop (non-destructive) the camera sources.
+
+### Fixed
+
+- Multi face tracking bug - [#85](https://github.com/zappar-xr/zappar-threejs/issues/85)
+- The camera will no longer automatically start (if has not been previously started) on `visibilitychange`.
+
 ## [0.3.28] - 2021-07-05
 
 ### Added
