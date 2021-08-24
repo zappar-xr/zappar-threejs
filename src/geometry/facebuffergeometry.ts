@@ -34,6 +34,11 @@ export class FaceBufferGeometry extends THREE.BufferGeometry {
   public constructor(faceMesh?: FaceMesh) {
     super();
 
+    this.setIndex([]);
+    this.setAttribute("position", new THREE.Float32BufferAttribute([], 3));
+    this.setAttribute("normal", new THREE.Float32BufferAttribute([], 3));
+    this.setAttribute("uv", new THREE.Float32BufferAttribute([], 2));
+
     if (!faceMesh) {
       if (!faceMeshSingleton) {
         faceMeshSingleton = new FaceMeshLoader().load();

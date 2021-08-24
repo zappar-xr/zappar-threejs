@@ -1,5 +1,13 @@
 # Changelog
 
+
+
+## [0.3.30] - 2021-08-24
+
+### Fixed
+
+- An issue where `facebuffergeometry` would not initialize it's `position`, `normal`, and `uv` attributes.
+
 ## [0.3.29] - 2021-08-20
 
 - Updated `@zappar/zappar`.
