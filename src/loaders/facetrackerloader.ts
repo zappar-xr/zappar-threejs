@@ -15,13 +15,22 @@ export class FaceTrackerLoader extends THREE.Loader {
    * @param onError - Callback which is called if there's an error loading the mesh.
    * @returns The FaceTracker.
    */
-  public load(customModel?: string, onLoad?: (i: FaceTracker) => void, onProgress?: () => void, onError?: (message?: unknown) => void): FaceTracker {
+  public load(
+    customModel?: string | ArrayBuffer,
+    onLoad?: (i: FaceTracker) => void,
+    onProgress?: () => void,
+    onError?: (message?: unknown) => void
+  ): FaceTracker {
     const trk = new FaceTracker();
     const p = customModel ? trk.loadModel(customModel) : trk.loadDefaultModel();
+    const itemFilename = typeof customModel === "string" ? customModel : "__zappar_threejs_face_tracker_default";
     p.then(() => {
       onLoad?.(trk);
+      this.manager.itemEnd(itemFilename);
     }).catch((_) => {
       onError?.(_);
+      this.manager.itemError(itemFilename);
+      this.manager.itemEnd(itemFilename);
     });
 
     return trk;

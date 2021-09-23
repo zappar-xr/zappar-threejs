@@ -1,6 +1,21 @@
 # Changelog
 
+## [0.3.31] - 2021-09-23
 
+### Added
+
+- LibraryLoader that ensures that the library is full loaded before any loading UI is dismissed
+- loaded() function which returns true once the library is fully loaded and available for use
+- loadedPromise() function which returns a promise that resolves once the library is fully loaded and available for use
+
+### Changed
+
+- Bucket 172.* IP address range into one license check.
+
+### Fixed
+
+- Issues with other browsers on iOS, including social browsers
+- Loaders for trackers and masks not registering items with the LoadingManager
 
 ## [0.3.30] - 2021-08-24
 

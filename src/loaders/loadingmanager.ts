@@ -1,6 +1,7 @@
 /* eslint-disable guard-for-in */
 
 import { THREE } from "../three";
+import { LibraryLoader } from "./libraryloader";
 
 type OnProgress = ((url: string, loaded: number, total: number) => void) | undefined;
 type OnLoad = (() => void) | undefined;
@@ -199,6 +200,7 @@ export class LoadingManager extends THREE.LoadingManager {
       },
       options?.onError
     );
+    new LibraryLoader(this).load();
   }
 
   /**

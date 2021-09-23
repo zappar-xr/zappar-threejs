@@ -17,14 +17,16 @@ export class ImageTrackerLoader extends THREE.Loader {
    */
   public load(zpt: string, onLoad?: (i: ImageTracker) => void, onProgress?: () => void, onError?: (message?: unknown) => void): ImageTracker {
     const trk = new ImageTracker();
-
     trk
       .loadTarget(zpt)
       .then(() => {
         onLoad?.(trk);
+        this.manager.itemEnd(zpt);
       })
       .catch((_) => {
         onError?.(_);
+        this.manager.itemError(zpt);
+        this.manager.itemEnd(zpt);
       });
 
     return trk;

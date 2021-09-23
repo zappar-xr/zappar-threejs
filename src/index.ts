@@ -13,6 +13,7 @@ export { FaceBufferGeometry } from "./geometry/facebuffergeometry";
 export { FaceMeshLoader } from "./loaders/facemeshloader";
 export { HeadMaskMesh } from "./mesh/headmaskmesh";
 export { HeadMaskMeshLoader } from "./loaders/headmaskmeshloader";
+export { LibraryLoader } from "./loaders/libraryloader";
 export { LoadingManager, LoaderStyle, DefaultLoaderUI } from "./loaders/loadingmanager";
 export { CameraEnvironmentMap } from "./cameraenvironmentmap";
 
@@ -47,4 +48,6 @@ export {
   permissionRequestUI,
   browserIncompatible,
   browserIncompatibleUI,
+  loaded,
+  loadedPromise,
 } from "@zappar/zappar";

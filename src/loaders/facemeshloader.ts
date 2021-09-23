@@ -37,6 +37,10 @@ export class FaceMeshLoader extends THREE.Loader {
   ): FaceMesh {
     const trk = new FaceMesh();
     let p: Promise<void>;
+    const itemFilename = `__zappar_threejs_face_mesh_${JSON.stringify(options || "default")}`;
+
+    this.manager.itemStart(itemFilename);
+
     if (options) {
       if (typeof options === "string") p = trk.load(options);
       else if (options.customModel) p = trk.load(options.customModel, options.fillMouth, options.fillEyeLeft, options.fillEyeRight, options.fillNeck);
@@ -47,8 +51,11 @@ export class FaceMeshLoader extends THREE.Loader {
 
     p.then(() => {
       onLoad?.(trk);
+      this.manager.itemEnd(itemFilename);
     }).catch((_) => {
       onError?.(_);
+      this.manager.itemError(itemFilename);
+      this.manager.itemEnd(itemFilename);
     });
 
     return trk;
@@ -69,6 +76,7 @@ export class FaceMeshLoader extends THREE.Loader {
   ): FaceMesh {
     const trk = new FaceMesh();
     let p: Promise<void>;
+    const itemFilename = `__zappar_threejs_face_mesh_face_${JSON.stringify(options || "default")}`;
     if (options) {
       if (options.customModel) p = trk.load(options.customModel, options.fillMouth, options.fillEyeLeft, options.fillEyeRight, options.fillNeck);
       else p = trk.loadDefaultFace(options.fillMouth, options.fillEyeLeft, options.fillEyeRight);
@@ -78,8 +86,11 @@ export class FaceMeshLoader extends THREE.Loader {
 
     p.then(() => {
       onLoad?.(trk);
+      this.manager.itemEnd(itemFilename);
     }).catch((_) => {
       onError?.(_);
+      this.manager.itemError(itemFilename);
+      this.manager.itemEnd(itemFilename);
     });
 
     return trk;
@@ -101,6 +112,7 @@ export class FaceMeshLoader extends THREE.Loader {
   ): FaceMesh {
     const trk = new FaceMesh();
     let p: Promise<void>;
+    const itemFilename = `__zappar_threejs_face_mesh_full_head_${JSON.stringify(options || "default")}`;
     if (options) {
       if (options.customModel) p = trk.load(options.customModel, options.fillMouth, options.fillEyeLeft, options.fillEyeRight, options.fillNeck);
       else p = trk.loadDefaultFullHeadSimplified(options.fillMouth, options.fillEyeLeft, options.fillEyeRight, options.fillNeck);
@@ -110,8 +122,11 @@ export class FaceMeshLoader extends THREE.Loader {
 
     p.then(() => {
       onLoad?.(trk);
+      this.manager.itemEnd(itemFilename);
     }).catch((_) => {
       onError?.(_);
+      this.manager.itemError(itemFilename);
+      this.manager.itemEnd(itemFilename);
     });
 
     return trk;

@@ -2,6 +2,8 @@
 import { THREE } from "../three";
 import { HeadMaskMesh } from "../mesh/headmaskmesh";
 
+const itemFilename = "__zappar_threejs_head_mask_mesh";
+
 /**
  * Loader for HeadMaskMesh objects.
  * @see https://docs.zap.works/universal-ar/web-libraries/threejs/face-tracking/
@@ -14,7 +16,18 @@ export class HeadMaskMeshLoader extends THREE.Loader {
    * @returns The HeadMaskMesh.
    */
   public load(onLoad?: () => void, onProgress?: () => void, onError?: () => void): HeadMaskMesh {
-    return new HeadMaskMesh(onLoad, onError);
+    this.manager.itemStart(itemFilename);
+    return new HeadMaskMesh(
+      () => {
+        onLoad?.();
+        this.manager.itemEnd(itemFilename);
+      },
+      () => {
+        onError?.();
+        this.manager.itemError(itemFilename);
+        this.manager.itemEnd(itemFilename);
+      }
+    );
   }
 
   /**
