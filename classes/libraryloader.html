@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>FaceTracker | @zappar/zappar-threejs</title>
+	<title>LibraryLoader | @zappar/zappar-threejs</title>
 	<meta name="description" content="Documentation for @zappar/zappar-threejs">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
@@ -2705,40 +2705,49 @@ img {
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class="current tsd-kind-class">
-			<a href="facetracker.html" class="tsd-kind-icon">Face<wbr>Tracker</a>
+			<a href="libraryloader.html" class="tsd-kind-icon">Library<wbr>Loader</a>
 			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-					<a href="facetracker.html#constructor" class="tsd-kind-icon">constructor</a>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+					<a href="libraryloader.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a href="facetracker.html#anchors" class="tsd-kind-icon">anchors</a>
+					<a href="libraryloader.html#crossorigin" class="tsd-kind-icon">cross<wbr>Origin</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a href="facetracker.html#onnewanchor" class="tsd-kind-icon">on<wbr>New<wbr>Anchor</a>
+					<a href="libraryloader.html#manager" class="tsd-kind-icon">manager</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a href="facetracker.html#onnotvisible" class="tsd-kind-icon">on<wbr>Not<wbr>Visible</a>
+					<a href="libraryloader.html#path" class="tsd-kind-icon">path</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a href="facetracker.html#onvisible" class="tsd-kind-icon">on<wbr>Visible</a>
+					<a href="libraryloader.html#requestheader" class="tsd-kind-icon">request<wbr>Header</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a href="facetracker.html#visible" class="tsd-kind-icon">visible</a>
+					<a href="libraryloader.html#resourcepath" class="tsd-kind-icon">resource<wbr>Path</a>
 				</li>
-				<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<a href="facetracker.html#enabled" class="tsd-kind-icon">enabled</a>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a href="libraryloader.html#withcredentials" class="tsd-kind-icon">with<wbr>Credentials</a>
 				</li>
-				<li class=" tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<a href="facetracker.html#maxfaces" class="tsd-kind-icon">max<wbr>Faces</a>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="libraryloader.html#load" class="tsd-kind-icon">load</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a href="facetracker.html#destroy" class="tsd-kind-icon">destroy</a>
+					<a href="libraryloader.html#loadasync" class="tsd-kind-icon">load<wbr>Async</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a href="facetracker.html#loaddefaultmodel" class="tsd-kind-icon">load<wbr>Default<wbr>Model</a>
+					<a href="libraryloader.html#setcrossorigin" class="tsd-kind-icon">set<wbr>Cross<wbr>Origin</a>
 				</li>
 				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<a href="facetracker.html#loadmodel" class="tsd-kind-icon">load<wbr>Model</a>
+					<a href="libraryloader.html#setpath" class="tsd-kind-icon">set<wbr>Path</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a href="libraryloader.html#setrequestheader" class="tsd-kind-icon">set<wbr>Request<wbr>Header</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a href="libraryloader.html#setresourcepath" class="tsd-kind-icon">set<wbr>Resource<wbr>Path</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<a href="libraryloader.html#setwithcredentials" class="tsd-kind-icon">set<wbr>With<wbr>Credentials</a>
 				</li>
 			</ul>
 		</li>
@@ -2749,23 +2758,20 @@ img {
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>Attaches content to a face as it moves around in the camera view.</p>
+					<p>Loader for library itself.
+						This library uses some additional resources (e.g web workers and WebAssembly) - this loader resolves once the library has fully loaded these resources.
+					If you&#39;re using the LoadingManager included in this library you don&#39;t need to explicitly use this yourself as one is automatically created.</p>
 				</div>
-				<dl class="tsd-comment-tags">
-					<dt>see</dt>
-					<dd><p><a href="https://docs.zap.works/universal-ar/web-libraries/threejs/face-tracking/">https://docs.zap.works/universal-ar/web-libraries/threejs/face-tracking/</a></p>
-					</dd>
-				</dl>
 			</div>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="tsd-signature-type">FaceTracker</span>
+					<span class="tsd-signature-type">Loader</span>
 					<ul class="tsd-hierarchy">
 						<li>
-							<span class="target">FaceTracker</span>
+							<span class="target">LibraryLoader</span>
 						</li>
 					</ul>
 				</li>
@@ -2775,68 +2781,61 @@ img {
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
-					<section class="tsd-index-section ">
+					<section class="tsd-index-section tsd-is-inherited">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="facetracker.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><a href="libraryloader.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-inherited tsd-is-external">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="facetracker.html#anchors" class="tsd-kind-icon">anchors</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="facetracker.html#onnewanchor" class="tsd-kind-icon">on<wbr>New<wbr>Anchor</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="facetracker.html#onnotvisible" class="tsd-kind-icon">on<wbr>Not<wbr>Visible</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="facetracker.html#onvisible" class="tsd-kind-icon">on<wbr>Visible</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="facetracker.html#visible" class="tsd-kind-icon">visible</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#crossorigin" class="tsd-kind-icon">cross<wbr>Origin</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#manager" class="tsd-kind-icon">manager</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#path" class="tsd-kind-icon">path</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#requestheader" class="tsd-kind-icon">request<wbr>Header</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#resourcepath" class="tsd-kind-icon">resource<wbr>Path</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#withcredentials" class="tsd-kind-icon">with<wbr>Credentials</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-external">
-						<h3>Accessors</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="facetracker.html#enabled" class="tsd-kind-icon">enabled</a></li>
-							<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-external"><a href="facetracker.html#maxfaces" class="tsd-kind-icon">max<wbr>Faces</a></li>
-						</ul>
-					</section>
-					<section class="tsd-index-section tsd-is-inherited tsd-is-external">
+					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="facetracker.html#destroy" class="tsd-kind-icon">destroy</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="facetracker.html#loaddefaultmodel" class="tsd-kind-icon">load<wbr>Default<wbr>Model</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="facetracker.html#loadmodel" class="tsd-kind-icon">load<wbr>Model</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="libraryloader.html#load" class="tsd-kind-icon">load</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#loadasync" class="tsd-kind-icon">load<wbr>Async</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#setcrossorigin" class="tsd-kind-icon">set<wbr>Cross<wbr>Origin</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#setpath" class="tsd-kind-icon">set<wbr>Path</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#setrequestheader" class="tsd-kind-icon">set<wbr>Request<wbr>Header</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#setresourcepath" class="tsd-kind-icon">set<wbr>Resource<wbr>Path</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external"><a href="libraryloader.html#setwithcredentials" class="tsd-kind-icon">set<wbr>With<wbr>Credentials</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group ">
+		<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
 			<h2>Constructors</h2>
-			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
-				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Face<wbr>Tracker<span class="tsd-signature-symbol">(</span>pipeline<span class="tsd-signature-symbol">?: </span><a href="pipeline.html" class="tsd-signature-type" data-tsd-kind="Class">Pipeline</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="facetracker.html" class="tsd-signature-type" data-tsd-kind="Class">FaceTracker</a></li>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Library<wbr>Loader<span class="tsd-signature-symbol">(</span>manager<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">LoadingManager</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
-							<p>Overrides Zappar.FaceTracker.constructor</p>
+							<p>Inherited from THREE.Loader.constructor</p>
 							<ul>
-								<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/b9cfe35/src/defaultpipeline.ts#L55">src/defaultpipeline.ts:55</a></li>
+								<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:6</li>
 							</ul>
 						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Constructs a new FaceTracker.</p>
-							</div>
-						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> pipeline: <a href="pipeline.html" class="tsd-signature-type" data-tsd-kind="Class">Pipeline</a></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> manager: <span class="tsd-signature-type">LoadingManager</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="facetracker.html" class="tsd-signature-type" data-tsd-kind="Class">FaceTracker</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -2844,256 +2843,360 @@ img {
 		<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-				<a name="anchors" class="tsd-anchor"></a>
-				<h3>anchors</h3>
-				<div class="tsd-signature tsd-kind-icon">anchors<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../interfaces/faceanchor.html" class="tsd-signature-type" data-tsd-kind="Interface">FaceAnchor</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="crossorigin" class="tsd-anchor"></a>
+				<h3>cross<wbr>Origin</h3>
+				<div class="tsd-signature tsd-kind-icon">cross<wbr>Origin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from Zappar.FaceTracker.anchors</p>
+					<p>Inherited from THREE.Loader.crossOrigin</p>
 					<ul>
-						<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:62</li>
+						<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:12</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>A map of the available anchors by their respective IDs.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>default</dt>
+						<dd><p>&#39;anonymous&#39;</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-				<a name="onnewanchor" class="tsd-anchor"></a>
-				<h3>on<wbr>New<wbr>Anchor</h3>
-				<div class="tsd-signature tsd-kind-icon">on<wbr>New<wbr>Anchor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Event1</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/faceanchor.html" class="tsd-signature-type" data-tsd-kind="Interface">FaceAnchor</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="manager" class="tsd-anchor"></a>
+				<h3>manager</h3>
+				<div class="tsd-signature tsd-kind-icon">manager<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">LoadingManager</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from Zappar.FaceTracker.onNewAnchor</p>
+					<p>Inherited from THREE.Loader.manager</p>
 					<ul>
-						<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:54</li>
+						<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:28</li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+				<a name="path" class="tsd-anchor"></a>
+				<h3>path</h3>
+				<div class="tsd-signature tsd-kind-icon">path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from THREE.Loader.path</p>
+					<ul>
+						<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:22</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Emitted when a new anchor is created by the tracker.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>default</dt>
+						<dd><p>&#39;&#39;</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-				<a name="onnotvisible" class="tsd-anchor"></a>
-				<h3>on<wbr>Not<wbr>Visible</h3>
-				<div class="tsd-signature tsd-kind-icon">on<wbr>Not<wbr>Visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Event1</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/faceanchor.html" class="tsd-signature-type" data-tsd-kind="Interface">FaceAnchor</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="requestheader" class="tsd-anchor"></a>
+				<h3>request<wbr>Header</h3>
+				<div class="tsd-signature tsd-kind-icon">request<wbr>Header<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from Zappar.FaceTracker.onNotVisible</p>
+					<p>Inherited from THREE.Loader.requestHeader</p>
 					<ul>
-						<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:50</li>
+						<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:33</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Emitted when an anchor goes from being visible in the previous camera frame, to not being visible in the current frame.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>default</dt>
+						<dd><p>{}</p>
+						</dd>
+					</dl>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-index-signature">
+							<h5><span class="tsd-signature-symbol">[</span>header: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
+						</li>
+					</ul>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-				<a name="onvisible" class="tsd-anchor"></a>
-				<h3>on<wbr>Visible</h3>
-				<div class="tsd-signature tsd-kind-icon">on<wbr>Visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Event1</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/faceanchor.html" class="tsd-signature-type" data-tsd-kind="Interface">FaceAnchor</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="resourcepath" class="tsd-anchor"></a>
+				<h3>resource<wbr>Path</h3>
+				<div class="tsd-signature tsd-kind-icon">resource<wbr>Path<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from Zappar.FaceTracker.onVisible</p>
+					<p>Inherited from THREE.Loader.resourcePath</p>
 					<ul>
-						<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:46</li>
+						<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:27</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Emitted when an anchor becomes visible in a camera frame.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>default</dt>
+						<dd><p>&#39;&#39;</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-				<a name="visible" class="tsd-anchor"></a>
-				<h3>visible</h3>
-				<div class="tsd-signature tsd-kind-icon">visible<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Set</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/faceanchor.html" class="tsd-signature-type" data-tsd-kind="Interface">FaceAnchor</a><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="withcredentials" class="tsd-anchor"></a>
+				<h3>with<wbr>Credentials</h3>
+				<div class="tsd-signature tsd-kind-icon">with<wbr>Credentials<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 				<aside class="tsd-sources">
-					<p>Inherited from Zappar.FaceTracker.visible</p>
+					<p>Inherited from THREE.Loader.withCredentials</p>
 					<ul>
-						<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:58</li>
+						<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:17</li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The set of currently visible anchors.</p>
-					</div>
+					<dl class="tsd-comment-tags">
+						<dt>default:</dt>
+						<dd><p>false</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-external">
-			<h2>Accessors</h2>
-			<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-				<a name="enabled" class="tsd-anchor"></a>
-				<h3>enabled</h3>
-				<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> enabled<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> enabled<span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:91</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Gets/sets the enabled state of the face tracker.
-								Disable when not in use to save computational resources during frame processing.</p>
-							</div>
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:92</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Gets/sets the enabled state of the face tracker.
-								Disable when not in use to save computational resources during frame processing.</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>e: <span class="tsd-signature-type">boolean</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-				<a name="maxfaces" class="tsd-anchor"></a>
-				<h3>max<wbr>Faces</h3>
-				<ul class="tsd-signatures tsd-kind-accessor tsd-parent-kind-class tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> maxFaces<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">set</span> maxFaces<span class="tsd-signature-symbol">(</span>m<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:98</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Gets/sets the maximum number of faces to track.</p>
-							</div>
-							<p>By default only one face is tracked in any given frame. Increasing this number may reduce runtime performance.</p>
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-					</li>
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:99</li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Gets/sets the maximum number of faces to track.</p>
-							</div>
-							<p>By default only one face is tracked in any given frame. Increasing this number may reduce runtime performance.</p>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>m: <span class="tsd-signature-type">number</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-					</li>
-				</ul>
-			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-external">
+		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-				<a name="destroy" class="tsd-anchor"></a>
-				<h3>destroy</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">destroy<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="load" class="tsd-anchor"></a>
+				<h3>load</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">load<span class="tsd-signature-symbol">(</span>onLoad<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, onProgress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span>, onError<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
-							<p>Inherited from Zappar.FaceTracker.destroy</p>
 							<ul>
-								<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:74</li>
+								<li>Defined in <a href="https://github.com/zappar-xr/zappar-threejs/blob/b9cfe35/src/loaders/libraryloader.ts#L18">src/loaders/libraryloader.ts:18</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Destroys the face tracker.</p>
+								<p>Resolves once the library is loaded and ready to process data.</p>
 							</div>
 						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> onLoad: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Callback which runs once the library is fully loaded.</p>
+								</div>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-signature">
+										<ul class="tsd-signatures tsd-kind-type-literal">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> onProgress: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-signature">
+										<ul class="tsd-signatures tsd-kind-type-literal">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> onError: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>Callback which is called if there&#39;s an error loading library.</p>
+								</div>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-signature">
+										<ul class="tsd-signatures tsd-kind-type-literal">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-				<a name="loaddefaultmodel" class="tsd-anchor"></a>
-				<h3>load<wbr>Default<wbr>Model</h3>
+				<a name="loadasync" class="tsd-anchor"></a>
+				<h3>load<wbr>Async</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">load<wbr>Default<wbr>Model<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">load<wbr>Async<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, onProgress<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProgressEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">EventTarget</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
-							<p>Inherited from Zappar.FaceTracker.loadDefaultModel</p>
+							<p>Inherited from THREE.Loader.loadAsync</p>
 							<ul>
-								<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:86</li>
+								<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:40</li>
 							</ul>
 						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Loads the default face tracking model.</p>
-							</div>
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>A promise that&#39;s resolved once the model is loaded. It may still take a few frames for the tracker to fully initialize and detect faces.</p>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>url: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> onProgress: <span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProgressEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">EventTarget</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-signature">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-external">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ProgressEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">EventTarget</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5>event: <span class="tsd-signature-type">ProgressEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">EventTarget</span><span class="tsd-signature-symbol">&gt;</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-				<a name="loadmodel" class="tsd-anchor"></a>
-				<h3>load<wbr>Model</h3>
+				<a name="setcrossorigin" class="tsd-anchor"></a>
+				<h3>set<wbr>Cross<wbr>Origin</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
-					<li class="tsd-signature tsd-kind-icon">load<wbr>Model<span class="tsd-signature-symbol">(</span>src<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBuffer</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">set<wbr>Cross<wbr>Origin<span class="tsd-signature-symbol">(</span>crossOrigin<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
-							<p>Inherited from Zappar.FaceTracker.loadModel</p>
+							<p>Inherited from THREE.Loader.setCrossOrigin</p>
 							<ul>
-								<li>Defined in node_modules/@zappar/zappar/lib/facetracker.d.ts:81</li>
+								<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:42</li>
 							</ul>
 						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Loads face tracking model data.</p>
-							</div>
-						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>src: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">ArrayBuffer</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>A URL to, or ArrayBuffer of, model data.</p>
-								</div>
+								<h5>crossOrigin: <span class="tsd-signature-type">string</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>A promise that&#39;s resolved once the model is loaded. It may still take a few frames for the tracker to fully initialize and detect faces.</p>
+						<h4 class="tsd-returns-title">Returns <a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+				<a name="setpath" class="tsd-anchor"></a>
+				<h3>set<wbr>Path</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">set<wbr>Path<span class="tsd-signature-symbol">(</span>path<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from THREE.Loader.setPath</p>
+							<ul>
+								<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:44</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>path: <span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+				<a name="setrequestheader" class="tsd-anchor"></a>
+				<h3>set<wbr>Request<wbr>Header</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">set<wbr>Request<wbr>Header<span class="tsd-signature-symbol">(</span>requestHeader<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from THREE.Loader.setRequestHeader</p>
+							<ul>
+								<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:46</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>requestHeader: <span class="tsd-signature-symbol">{}</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-index-signature">
+										<h5><span class="tsd-signature-symbol">[</span>header: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span></h5>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+				<a name="setresourcepath" class="tsd-anchor"></a>
+				<h3>set<wbr>Resource<wbr>Path</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">set<wbr>Resource<wbr>Path<span class="tsd-signature-symbol">(</span>resourcePath<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from THREE.Loader.setResourcePath</p>
+							<ul>
+								<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:45</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>resourcePath: <span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+				<a name="setwithcredentials" class="tsd-anchor"></a>
+				<h3>set<wbr>With<wbr>Credentials</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-external">
+					<li class="tsd-signature tsd-kind-icon">set<wbr>With<wbr>Credentials<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from THREE.Loader.setWithCredentials</p>
+							<ul>
+								<li>Defined in node_modules/@types/three/src/loaders/Loader.d.ts:43</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>value: <span class="tsd-signature-type">boolean</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="libraryloader.html" class="tsd-signature-type" data-tsd-kind="Class">LibraryLoader</a></h4>
 					</li>
 				</ul>
 			</section>
