@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.3.32] - 2021-09-30
+
+- Bumped `three` support to `0.131.1`.
+
 ## [0.3.31] - 2021-09-23
 
 ### Added
