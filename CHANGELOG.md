@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.33] - 2021-11-01
+
+### Changed
+
+- Pinned dependencies to exact versions
+
 ## [0.3.32] - 2021-09-30
 
 - Bumped `three` support to `0.131.1`.

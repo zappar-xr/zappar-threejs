@@ -16,7 +16,7 @@ module.exports = {
   },
   plugins: [],
   devServer: {
-    contentBase: "./dist",
+    static: "./dist",
   },
   module: {
     rules: [
