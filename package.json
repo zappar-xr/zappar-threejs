@@ -41,7 +41,7 @@
     "@types/jest-image-snapshot": "4.3.1",
     "@types/node": "15.12.2",
     "@types/three": "0.131.1",
-    "@typescript-eslint/eslint-plugin": "5.2.0",
+    "@typescript-eslint/eslint-plugin": "5.6.0",
     "@typescript-eslint/parser": "5.2.0",
     "@zappar/jest-console-logs": "1.0.0",
     "copy-webpack-plugin": "9.0.1",
