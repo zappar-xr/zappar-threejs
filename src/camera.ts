@@ -169,10 +169,6 @@ export class Camera extends THREE.Camera {
 
   private hasSetCSSScaleX = false;
 
-  private emptyScene = new THREE.Scene();
-
-  private emptyTarget = new THREE.WebGLRenderTarget(2, 2);
-
   private zFar;
 
   private zNear;
@@ -211,9 +207,6 @@ export class Camera extends THREE.Camera {
     document.addEventListener("visibilitychange", () => {
       document.visibilityState === "visible" ? this.resume() : this.pause();
     });
-
-    const immediate = new THREE.ImmediateRenderObject(new THREE.MeshBasicMaterial());
-    this.emptyScene.add(immediate);
   }
 
   /**
@@ -296,11 +289,6 @@ export class Camera extends THREE.Camera {
    * @param renderer - The Three.js WebGL renderer.
    */
   public updateFrame(renderer: THREE.WebGLRenderer): void {
-    const target = renderer.getRenderTarget();
-    renderer.setRenderTarget(this.emptyTarget);
-
-    renderer.render(this.emptyScene, this);
-
     // ThreeJS manages its GL state for optimal performance
     // Reset it here so it's predictable for processGL
     renderer.state.reset();
@@ -309,8 +297,6 @@ export class Camera extends THREE.Camera {
 
     // Return to ThreeJS's standard state since processGL will have altered some state
     renderer.state.reset();
-
-    renderer.setRenderTarget(target);
 
     // Update to using the latest tracking frame data
     this.pipeline.frameUpdate();

@@ -70,7 +70,7 @@ You may also be interested in:
          * [Texture Encoding](#texture-encoding)
       * [Links and Resources](#links-and-resources)
 
-<!-- Added by: zapparadmin, at: Mon Nov  1 11:08:35 GMT 2021 -->
+<!-- Added by: zapparadmin, at: Wed Feb  9 10:56:59 GMT 2022 -->
 
 <!--te-->
 </details>
@@ -101,7 +101,7 @@ You can use this library by downloading a standalone zip containing the necessar
 ### Standalone Download
 
 Download the bundle from:
-<https://libs.zappar.com/zappar-threejs/0.3.33/zappar-threejs.zip>
+<https://libs.zappar.com/zappar-threejs/0.3.34/zappar-threejs.zip>
 
 Unzip into your web project and reference from your HTML like this:
 
@@ -114,7 +114,7 @@ Unzip into your web project and reference from your HTML like this:
 Reference the zappar.js library from your HTML like this:
 
 ```html
-<script src="https://libs.zappar.com/zappar-threejs/0.3.33/zappar-threejs.js"></script>
+<script src="https://libs.zappar.com/zappar-threejs/0.3.34/zappar-threejs.js"></script>
 ```
 
 ### NPM Webpack Package

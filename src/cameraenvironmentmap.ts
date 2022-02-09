@@ -5,7 +5,7 @@ export class CameraEnvironmentMap {
   private cubeMapScene = new THREE.Scene();
 
   private renderTarget = new THREE.WebGLCubeRenderTarget(256, {
-    format: THREE.RGBFormat,
+    format: THREE.RGBAFormat,
     generateMipmaps: true,
     minFilter: THREE.LinearMipmapLinearFilter,
   });
