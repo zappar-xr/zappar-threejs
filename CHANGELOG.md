@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.35] - 2021-02-11
+
+### Changed
+
+- Internals - Moved `Camera`'s `backgroundTexture` into its own class.
+
 ## [0.3.34] - 2021-02-08
 
 ### Fixed

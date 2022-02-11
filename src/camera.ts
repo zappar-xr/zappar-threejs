@@ -2,6 +2,7 @@ import * as Zappar from "@zappar/zappar";
 import { InstantWorldAnchor } from "@zappar/zappar/lib/instantworldtracker";
 import { THREE } from "./three";
 import { getDefaultPipeline, CameraSource } from "./defaultpipeline";
+import { CameraTexture } from "./cameraTexture";
 
 /**
  * The pose modes that determine how the camera moves around in the scene.
@@ -87,7 +88,8 @@ type SourceOptions = {
  * @param pipeline - The pipeline that this tracker will operate within.
  * @property pipeline? - The pipeline that this tracker will operate within.
  * @property zNear? - The near clipping plane.
- * @property zFar? - The far clipping plane..
+ * @property zFar? - The far clipping plane.
+ * @property backgroundTexture? - An instance of CameraTexture to use. This should usually be left blank.
  */
 export type Options =
   | Zappar.Pipeline
@@ -95,12 +97,9 @@ export type Options =
       pipeline: Zappar.Pipeline;
       zNear: number;
       zFar: number;
+      backgroundTexture: CameraTexture;
     }> &
       SourceOptions);
-
-// The typings for ThreeJS's Texture object does not include the matrix properties
-// so we have a custom type here
-type BackgroundTexture = THREE.Texture & { matrixAutoUpdate: boolean; matrix: THREE.Matrix3 };
 
 /**
  * Creates a camera that you can use instead of a perspective camera.
@@ -120,7 +119,7 @@ export class Camera extends THREE.Camera {
    * You can use this texture however you wish but the easiest way to show the camera feed behind your content is to set it as your scene's background.
    */
 
-  public backgroundTexture = new THREE.Texture() as BackgroundTexture;
+  public backgroundTexture: CameraTexture;
 
   /**
    * A 4x4 column-major transformation matrix where the camera sits.
@@ -195,12 +194,13 @@ export class Camera extends THREE.Camera {
     if (opts && !(opts instanceof Zappar.Pipeline)) {
       this.zNear = opts.zNear ? opts.zNear : 0.1;
       this.zFar = opts.zFar ? opts.zFar : 100;
-
       this.rearCameraSource = this.cameraSourceFromOpts(opts.rearCameraSource);
       this.userCameraSource = this.cameraSourceFromOpts(opts.userCameraSource, true);
+      this.backgroundTexture = opts.backgroundTexture ? opts.backgroundTexture : new CameraTexture();
     } else {
       this.rearCameraSource = new CameraSource(Zappar.cameraDefaultDeviceID(), this.pipeline);
       this.userCameraSource = new CameraSource(Zappar.cameraDefaultDeviceID(true), this.pipeline);
+      this.backgroundTexture = new CameraTexture();
     }
 
     this.matrixAutoUpdate = false;
@@ -335,8 +335,8 @@ export class Camera extends THREE.Camera {
         this.rawPose = this.pipeline.cameraPoseDefault();
         break;
     }
-
-    this.updateBackgroundTexture(renderer);
+    this.backgroundTexture.MirrorMode = this.currentMirrorMode;
+    this.backgroundTexture.update(renderer, this.pipeline);
   }
 
   // eslint-disable-next-line no-underscore-dangle
@@ -362,40 +362,6 @@ export class Camera extends THREE.Camera {
   private getOriginPose(): Float32Array {
     if (!this.poseAnchorOrigin) return this.pipeline.cameraPoseDefault();
     return this.pipeline.cameraPoseWithOrigin(this.poseAnchorOrigin.poseCameraRelative(this.currentMirrorMode === CameraMirrorMode.Poses));
-  }
-
-  private updateBackgroundTexture(renderer: THREE.WebGLRenderer) {
-    this.pipeline.cameraFrameUploadGL();
-    const texture = this.pipeline.cameraFrameTextureGL();
-    if (!texture) return;
-
-    // Update the underlying WebGL texture of the ThreeJS texture object
-    // to the one provided by the Zappar library
-    const properties = renderer.properties.get(this.backgroundTexture);
-
-    // eslint-disable-next-line no-underscore-dangle
-    properties.__webglTexture = texture;
-    // eslint-disable-next-line no-underscore-dangle
-    properties.__webglInit = true;
-
-    // The Zappar library provides a 4x4 UV matrix to display the camera
-    // texture on a fullscreen quad with 0,0 -> 1,1 UV coordinates
-    const view = new THREE.Matrix4();
-    view.fromArray(
-      this.pipeline.cameraFrameTextureMatrix(renderer.domElement.width, renderer.domElement.height, this.currentMirrorMode === CameraMirrorMode.Poses)
-    );
-
-    // ThreeJS's Texture object uses a 3x3 matrix, so convert from our 4x4 matrix
-    const textureMatrix3 = new THREE.Matrix3();
-    textureMatrix3.setFromMatrix4(view);
-    // eslint-disable-next-line prefer-destructuring
-    textureMatrix3.elements[6] = view.elements[12];
-    // eslint-disable-next-line prefer-destructuring
-    textureMatrix3.elements[7] = view.elements[13];
-    textureMatrix3.elements[8] = 1;
-
-    this.backgroundTexture.matrixAutoUpdate = false;
-    this.backgroundTexture.matrix = textureMatrix3;
   }
 
   /**
