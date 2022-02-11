@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.36] - 2021-02-11
+
+### Changed
+
+- `ZapparThree.CameraEnvironmentMap` now extends `THREE.Texture`.
+
 ## [0.3.35] - 2021-02-11
 
 ### Changed

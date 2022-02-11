@@ -1,7 +1,7 @@
 import { THREE } from "./three";
 import { Camera } from "./camera";
 
-export class CameraEnvironmentMap {
+export class CameraEnvironmentMap extends THREE.Texture {
   private cubeMapScene = new THREE.Scene();
 
   private renderTarget = new THREE.WebGLCubeRenderTarget(256, {
@@ -19,12 +19,17 @@ export class CameraEnvironmentMap {
   /**
    * The resulting map texture. Set this as your `scene.environment` or as a material's `envMap`.
    */
-  public environmentMap = this.renderTarget.texture;
+  public environmentMap = this;
 
   /**
    * Constructs a new Camera Environment Map.
    */
   public constructor() {
+    super();
+    Object.assign(this, this.renderTarget.texture);
+    // TODO: Once we drop support for <r126, use the new API instead:
+    // this.renderTarget.SetTexture(this);
+    this.renderTarget.texture = this as any;
     this.cubeMapScene.add(this.cubeCamera);
 
     const sphere = new THREE.Mesh(new THREE.SphereBufferGeometry(10, 16, 12), this.sphereMaterial);
@@ -40,6 +45,7 @@ export class CameraEnvironmentMap {
   public dispose() {
     this.renderTarget.dispose();
     this.sphereMaterial.dispose();
+    super.dispose();
   }
 
   /**
