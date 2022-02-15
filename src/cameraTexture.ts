@@ -17,6 +17,7 @@ export class CameraTexture extends THREE.Texture {
     pipeline.cameraFrameUploadGL();
     const texture = pipeline.cameraFrameTextureGL();
     if (!texture) return;
+    this.encoding = renderer.outputEncoding;
 
     // Update the underlying WebGL texture of the ThreeJS texture object
     // to the one provided by the Zappar library

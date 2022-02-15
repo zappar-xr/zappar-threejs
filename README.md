@@ -66,11 +66,9 @@ You may also be interested in:
          * [Face Mesh](#face-mesh)
          * [Head Masking](#head-masking)
          * [Instant World Tracking](#instant-world-tracking)
-      * [Caveats](#caveats)
-         * [Texture Encoding](#texture-encoding)
       * [Links and Resources](#links-and-resources)
 
-<!-- Added by: zapparadmin, at: Fri Feb 11 18:33:50 GMT 2022 -->
+<!-- Added by: zapparadmin, at: Tue Feb 15 12:37:20 GMT 2022 -->
 
 <!--te-->
 </details>
@@ -101,7 +99,7 @@ You can use this library by downloading a standalone zip containing the necessar
 ### Standalone Download
 
 Download the bundle from:
-<https://libs.zappar.com/zappar-threejs/0.3.36/zappar-threejs.zip>
+<https://libs.zappar.com/zappar-threejs/0.3.37/zappar-threejs.zip>
 
 Unzip into your web project and reference from your HTML like this:
 
@@ -114,7 +112,7 @@ Unzip into your web project and reference from your HTML like this:
 Reference the zappar.js library from your HTML like this:
 
 ```html
-<script src="https://libs.zappar.com/zappar-threejs/0.3.36/zappar-threejs.js"></script>
+<script src="https://libs.zappar.com/zappar-threejs/0.3.37/zappar-threejs.js"></script>
 ```
 
 ### NPM Webpack Package
@@ -833,24 +831,6 @@ function animate() {
 // Start things off
 animate();
 ```
-
-## Caveats
-
-### Texture Encoding
-
-When changing `outputEncoding` on your renderer, ensure you apply the same encoder to the background texture of the camera.
-
-```diff
-const renderer = new THREE.WebGLRenderer();
-renderer.outputEncoding = THREE.sRGBEncoding;
-
-const camera = new ZapparThree.Camera();
-++ camera.backgroundTexture.encoding = THREE.sRGBEncoding;
-scene.background = camera.backgroundTexture;
-```
-
-The same applies to `renderTarget.texture.encoding` when using `EffectComposer`.
-
 
 ## Links and Resources
 

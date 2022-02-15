@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.37] - 2021-02-15
+
+### Changed
+
+- `ZapparThree.CameraEnvironmentMap` and `ZapparThree.Camera.backgroundTexture` encoding is set automatically.
+
 ## [0.3.36] - 2021-02-11
 
 ### Changed
