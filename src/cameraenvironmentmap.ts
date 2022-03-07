@@ -1,7 +1,7 @@
 import { THREE } from "./three";
 import { Camera } from "./camera";
 
-export class CameraEnvironmentMap extends THREE.Texture {
+export class CameraEnvironmentMap {
   private cubeMapScene = new THREE.Scene();
 
   private renderTarget = new THREE.WebGLCubeRenderTarget(256, {
@@ -19,17 +19,12 @@ export class CameraEnvironmentMap extends THREE.Texture {
   /**
    * The resulting map texture. Set this as your `scene.environment` or as a material's `envMap`.
    */
-  public environmentMap = this;
+  public environmentMap = this.renderTarget.texture;
 
   /**
    * Constructs a new Camera Environment Map.
    */
   public constructor() {
-    super();
-    Object.assign(this, this.renderTarget.texture);
-    // TODO: Once we drop support for <r126, use the new API instead:
-    // this.renderTarget.SetTexture(this);
-    this.renderTarget.texture = this as any;
     this.cubeMapScene.add(this.cubeCamera);
 
     const sphere = new THREE.Mesh(new THREE.SphereBufferGeometry(10, 16, 12), this.sphereMaterial);
@@ -45,7 +40,6 @@ export class CameraEnvironmentMap extends THREE.Texture {
   public dispose() {
     this.renderTarget.dispose();
     this.sphereMaterial.dispose();
-    super.dispose();
   }
 
   /**
@@ -56,7 +50,7 @@ export class CameraEnvironmentMap extends THREE.Texture {
    * @param zapparCamera - The Zappar camera you're using to render your scene
    */
   public update(renderer: THREE.WebGLRenderer, zapparCamera: Camera) {
-    this.encoding = renderer.outputEncoding;
+    this.environmentMap.encoding = renderer.outputEncoding;
     this.sphereMaterial.map = zapparCamera.backgroundTexture;
     this.sphereGroup.quaternion.copy(zapparCamera.quaternion);
     this.cubeCamera.update(renderer, this.cubeMapScene);

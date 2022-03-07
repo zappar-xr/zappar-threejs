@@ -1,4 +1,4 @@
 /**
  * SDK version.
  */
-export const VERSION = "0.3.37";
+export const VERSION = "0.3.38";

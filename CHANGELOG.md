@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.38] - 2021-03-07
+
+### Changed
+
+- Undo changes introduced in `0.3.36`.
+
 ## [0.3.37] - 2021-02-15
 
 ### Changed
