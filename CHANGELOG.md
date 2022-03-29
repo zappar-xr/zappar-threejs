@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.40] - 2022-02-29
+
+### Fixed
+
+- Bumped `peerDependencies` `three` to  `"0.118.0 - 0.139.0"`
+
 ## [0.3.39] - 2022-02-29
 
 ### Fixed

@@ -74,7 +74,7 @@
     "webpack-dev-server": "4.7.4"
   },
   "peerDependencies": {
-    "three": "0.118.0 - 0.137.5"
+    "three": "0.118.0 - 0.139.0"
   },
   "dependencies": {
     "@zappar/zappar": "0.3.17"
