@@ -1,30 +1,36 @@
 # Changelog
 
-## [0.3.38] - 2021-03-07
+## [0.3.39] - 2022-02-29
+
+### Fixed
+
+- Addressed texture encoding issues for the camera background texture with recent three.js versions.
+
+## [0.3.38] - 2022-03-07
 
 ### Changed
 
 - Undo changes introduced in `0.3.36`.
 
-## [0.3.37] - 2021-02-15
+## [0.3.37] - 2022-02-15
 
 ### Changed
 
 - `ZapparThree.CameraEnvironmentMap` and `ZapparThree.Camera.backgroundTexture` encoding is set automatically.
 
-## [0.3.36] - 2021-02-11
+## [0.3.36] - 2022-02-11
 
 ### Changed
 
 - `ZapparThree.CameraEnvironmentMap` now extends `THREE.Texture`.
 
-## [0.3.35] - 2021-02-11
+## [0.3.35] - 2022-02-11
 
 ### Changed
 
 - Internals - Moved `Camera`'s `backgroundTexture` into its own class.
 
-## [0.3.34] - 2021-02-08
+## [0.3.34] - 2022-02-08
 
 ### Fixed
 

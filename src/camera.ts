@@ -336,7 +336,7 @@ export class Camera extends THREE.Camera {
         break;
     }
     this.backgroundTexture.MirrorMode = this.currentMirrorMode;
-    this.backgroundTexture.update(renderer, this.pipeline);
+    this.backgroundTexture.updateFromPipeline(renderer, this.pipeline);
   }
 
   // eslint-disable-next-line no-underscore-dangle

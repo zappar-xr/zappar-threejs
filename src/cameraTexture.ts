@@ -8,16 +8,24 @@ import { THREE } from "./three";
 export class CameraTexture extends THREE.Texture {
   public MirrorMode: CameraMirrorMode = CameraMirrorMode.None;
 
+  public isVideoTexture = true;
+
+  /**
+   * Override three.js update function since we update the camera texture ourselves.
+   */
+  public update() {} // eslint-disable-line class-methods-use-this
+
   /**
    * Processes camera frames and updates the texture.
    * @param renderer - The Three.js WebGL renderer.
    * @param pipeline - A ZapparThree Pipeline.
    */
-  public update(renderer: THREE.WebGLRenderer, pipeline: Pipeline) {
+  public updateFromPipeline(renderer: THREE.WebGLRenderer, pipeline: Pipeline) {
+    this.encoding = renderer.outputEncoding;
+
     pipeline.cameraFrameUploadGL();
     const texture = pipeline.cameraFrameTextureGL();
     if (!texture) return;
-    this.encoding = renderer.outputEncoding;
 
     // Update the underlying WebGL texture of the ThreeJS texture object
     // to the one provided by the Zappar library
