@@ -335,6 +335,7 @@ export class Camera extends THREE.Camera {
         this.rawPose = this.pipeline.cameraPoseDefault();
         break;
     }
+    this.matrixWorldNeedsUpdate = true;
     this.backgroundTexture.MirrorMode = this.currentMirrorMode;
     this.backgroundTexture.updateFromPipeline(renderer, this.pipeline);
   }

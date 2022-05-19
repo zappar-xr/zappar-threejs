@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.41] - 2022-05-19
+
+### Fixed
+
+- Set `matrixWorldNeedsUpdate` in `ZapparCamera`. This fixes an issue where the camera's position would not be set correctly in `AnchorOrigin` mode.
+
 ## [0.3.40] - 2022-02-29
 
 ### Fixed

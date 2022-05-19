@@ -68,7 +68,7 @@ You may also be interested in:
          * [Instant World Tracking](#instant-world-tracking)
       * [Links and Resources](#links-and-resources)
 
-<!-- Added by: zapparadmin, at: Tue Mar 29 17:27:58 BST 2022 -->
+<!-- Added by: zapparadmin, at: Thu May 19 10:32:46 BST 2022 -->
 
 <!--te-->
 </details>
@@ -99,7 +99,7 @@ You can use this library by downloading a standalone zip containing the necessar
 ### Standalone Download
 
 Download the bundle from:
-<https://libs.zappar.com/zappar-threejs/0.3.40/zappar-threejs.zip>
+<https://libs.zappar.com/zappar-threejs/0.3.41/zappar-threejs.zip>
 
 Unzip into your web project and reference from your HTML like this:
 
@@ -112,7 +112,7 @@ Unzip into your web project and reference from your HTML like this:
 Reference the zappar.js library from your HTML like this:
 
 ```html
-<script src="https://libs.zappar.com/zappar-threejs/0.3.40/zappar-threejs.js"></script>
+<script src="https://libs.zappar.com/zappar-threejs/0.3.41/zappar-threejs.js"></script>
 ```
 
 ### NPM Webpack Package
