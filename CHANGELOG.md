@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.43] - 2022-07-21
+
+### Fixed
+
+- An issue where `troika-text` would corrupt gl state on some devices.
+
+## [0.3.42] - 2022-07-4
+
+- Bumped `three` support to `142.`
+
 ## [0.3.41] - 2022-05-19
 
 ### Fixed
