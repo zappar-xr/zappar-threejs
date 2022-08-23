@@ -68,7 +68,7 @@ You may also be interested in:
          * [Instant World Tracking](#instant-world-tracking)
       * [Links and Resources](#links-and-resources)
 
-<!-- Added by: zapparadmin, at: Thu Jul 21 17:23:42 BST 2022 -->
+<!-- Added by: zapparadmin, at: Tue Aug 23 12:42:28 BST 2022 -->
 
 <!--te-->
 </details>
@@ -99,7 +99,7 @@ You can use this library by downloading a standalone zip containing the necessar
 ### Standalone Download
 
 Download the bundle from:
-<https://libs.zappar.com/zappar-threejs/0.3.43/zappar-threejs.zip>
+<https://libs.zappar.com/zappar-threejs/2.0.0/zappar-threejs.zip>
 
 Unzip into your web project and reference from your HTML like this:
 
@@ -112,7 +112,7 @@ Unzip into your web project and reference from your HTML like this:
 Reference the zappar.js library from your HTML like this:
 
 ```html
-<script src="https://libs.zappar.com/zappar-threejs/0.3.43/zappar-threejs.js"></script>
+<script src="https://libs.zappar.com/zappar-threejs/2.0.0/zappar-threejs.js"></script>
 ```
 
 ### NPM Webpack Package
@@ -129,24 +129,7 @@ Then import the library into your JavaScript or TypeScript files:
 import * as ZapparThree from "@zappar/zappar-threejs";
 ```
 
-The final step is to add this necessary entry to your webpack `rules`:
-
-```ts
-module.exports = {
-  //...
-  module: {
-    rules: [
-      //...
-      {
-        test: /zcv\.wasm$/,
-        type: "javascript/auto",
-        loader: "file-loader"
-      }
-      //...
-    ]
-  }
-};
-```
+Please note - This library supports Webpack 5 and later.
 
 ## Overview
 
@@ -486,13 +469,13 @@ The Zappar library provides multiple modes for the camera to move around in the 
 
 The Zappar library offers three types of tracking for you to use to build augmented reality experiences:
 
-- *Image Tracking* can detect and track a flat image in 3D space. This is great for building content that's augmented onto business cards, posters, magazine pages, etc.
+- *Image Tracking* can detect and track a flat or curved image in 3D space. This is great for building content that's augmented onto business cards, posters, magazine pages, bottles, etc.
 - *Face Tracking* detects and tracks the user's face. You can attach 3D objects to the face itself, or render a 3D mesh that's fit to (and deforms with) the face as the user moves and changes their expression. You could build face-filter experiences to allow users to try on different virtual sunglasses, for example, or to simulate face paint.
 - *Instant World Tracking* lets you tracking 3D content to a point chosen by the user in the room or immediate environment around them. With this tracking type you could build a 3D model viewer that lets users walk around to view the model from different angles, or an experience that places an animated character in their room.
 
 ### Image Tracking
 
-To track content from a flat image in the camera view, create a new `ImageTracker` object:
+To track content from a flat or curved image in the camera view, create a new `ImageTracker` object:
 
 ```ts
 let imageTracker = new ZapparThree.ImageTracker();
@@ -505,6 +488,8 @@ let imageTracker = new ZapparThree.ImageTracker();
 ```bash
 zapworks train myImage.png
 ```
+
+For more information on generating target files, including how to build them for curved or cylindrical surfaces, check out the [ZapWorks CLI documentation](https://docs.zap.works/universal-ar/useful-packages/zapworks-cli/).
 
 The resulting file can be loaded into an image tracker object by passing it to the `loadTarget(...)` function as either a URL or an ArrayBuffer. The function returns a promise that resolves when the target file has been loaded successfully.
 
@@ -549,7 +534,7 @@ scene.add(imageAnchorGroup);
 imageAnchorGroup.add(myModel);
 ```
 
-The group provides a coordinate system that has its origin at the center of the image, with positive X axis to the right, the positive Y axis towards the top and the positive Z axis coming up out of the plane of the image. The scale of the coordinate system is such that a Y value of +1 corresponds to the top of the image, and a Y value of -1 corresponds to the bottom of the image. The X axis positions of the left and right edges of the target image therefore depend on the aspect ratio of the image.
+The group provides a coordinate system that has its origin at the center of the image, with positive X axis to the right, the positive Y axis towards the top and the positive Z axis coming up out of the plane of the image. For curved targets, the origin is in the center of the cylinder defined by the curve. If the physical size of the image was included when the target file was generated (e.g. using the `input-width`, `input-height`, or `dpi` parameters), then the units of the coordinate system are meters. If no physical size was specified, then the scale of the coordinate system is such that a Y value of +1 corresponds to the top of the image, and a Y value of -1 corresponds to the bottom of the image. The X axis positions of the left and right edges of the target image therefore depend on the aspect ratio of the image.
 
 #### Events
 

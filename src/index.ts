@@ -16,7 +16,8 @@ export { HeadMaskMeshLoader } from "./loaders/headmaskmeshloader";
 export { LibraryLoader } from "./loaders/libraryloader";
 export { LoadingManager, LoaderStyle, DefaultLoaderUI } from "./loaders/loadingmanager";
 export { CameraEnvironmentMap } from "./cameraenvironmentmap";
-
+export { TargetImagePreviewBufferGeometry } from "./geometry/targetimagepreviewbuffergeometry";
+export { TargetImagePreviewMesh } from "./mesh/targetimagepreviewmesh";
 export {
   ImageTracker,
   InstantWorldTracker,
@@ -50,4 +51,5 @@ export {
   browserIncompatibleUI,
   loaded,
   loadedPromise,
+  SequenceSource,
 } from "@zappar/zappar";

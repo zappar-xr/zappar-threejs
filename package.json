@@ -71,13 +71,14 @@
     "webpack": "5.68.0",
     "webpack-cdn-plugin": "3.3.1",
     "webpack-cli": "4.9.2",
-    "webpack-dev-server": "4.7.4"
+    "webpack-dev-server": "4.7.4",
+    "worker-loader": "^3.0.8"
   },
   "peerDependencies": {
     "three": "0.118.0 - 0.142.0"
   },
   "dependencies": {
-    "@zappar/zappar": "0.3.18"
+    "@zappar/zappar": "2.0.0"
   },
   "husky": {
     "hooks": {

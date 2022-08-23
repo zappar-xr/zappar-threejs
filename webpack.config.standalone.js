@@ -5,10 +5,7 @@ const baseConfig = require("./webpack.config.base");
 baseConfig.externals = {
   three: "THREE",
 };
-baseConfig.plugins.push(
-  new webpack.DefinePlugin({
-    Z_STANDALONE: true,
-  })
-);
+baseConfig.entry = "./src/index-standalone.ts";
+
 delete baseConfig.devtool;
 module.exports = baseConfig;

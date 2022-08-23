@@ -1,5 +1,33 @@
 # Changelog
 
+## [2.0.0] - 2022-08-23
+
+### Added
+
+- Greatly improved instant tracking.
+- Introduced `SequenceSource` and pipeline functions to record and playback sequences of camera+motion data.
+- Added support for curved tracking.
+- Added support for fetching image element containing target image's embedded preview image.
+- Improved GL state management.
+
+### Changed
+
+- Migrated to Webpack 5 workers.
+
+### **Breaking:**
+
+- Dropped support for webpack 4.
+
+## [0.3.43] - 2022-07-21
+
+### Fixed
+
+- An issue where `troika-text` would corrupt gl state on some devices.
+
+## [0.3.42] - 2022-07-4
+
+- Bumped `three` support to `142.`
+
 ## [0.3.43] - 2022-07-21
 
 ### Fixed

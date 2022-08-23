@@ -289,14 +289,7 @@ export class Camera extends THREE.Camera {
    * @param renderer - The Three.js WebGL renderer.
    */
   public updateFrame(renderer: THREE.WebGLRenderer): void {
-    // ThreeJS manages its GL state for optimal performance
-    // Reset it here so it's predictable for processGL
-    renderer.state.reset();
-
     this.pipeline.processGL();
-
-    // Return to ThreeJS's standard state since processGL will have altered some state
-    renderer.state.reset();
 
     // Update to using the latest tracking frame data
     this.pipeline.frameUpdate();

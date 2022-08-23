@@ -5,6 +5,8 @@ import cameraPlaneTexture from "../assets/planes/camera.jpg";
 import scenePlaneTexture from "../assets/planes/scene.jpg";
 import targetPlaneTexture from "../assets/planes/target.jpg";
 
+let sequenceSource: ZapparThree.SequenceSource | undefined;
+
 const textureLoader = new THREE.TextureLoader();
 
 ZapparThree.setLogLevel(ZapparThree.LogLevel.LOG_LEVEL_VERBOSE);
@@ -121,6 +123,36 @@ const setupLights = () => {
   const helper = new THREE.DirectionalLightHelper(light);
   scene.add(helper);
 };
+const recordSequence = document.querySelector<HTMLButtonElement>("#recordSequence") || document.createElement("button");
+recordSequence.addEventListener("click", () => {
+  camera.pipeline.sequenceRecordStart(6 * 25);
+  recordSequence.disabled = true;
+  setTimeout(() => {
+    camera.pipeline.sequenceRecordStop();
+    const data = camera.pipeline.sequenceRecordData();
+    const blob = new Blob([data], { type: "application/octet-stream" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.download = "sequence.uar";
+    a.href = url;
+    a.click();
+    recordSequence.disabled = false;
+  }, 5000);
+});
+
+const playSequence = document.querySelector<HTMLButtonElement>("#playSequence") || document.createElement("button");
+playSequence.addEventListener("click", () => {
+  const upload = document.createElement("input");
+  upload.type = "file";
+  upload.addEventListener("change", async () => {
+    if (!sequenceSource) sequenceSource = new ZapparThree.SequenceSource(camera.pipeline);
+    const f = upload.files?.[0];
+    if (!f) return;
+    sequenceSource.load(await f.arrayBuffer());
+    sequenceSource.start();
+  });
+  upload.click();
+});
 
 setupDomButtons();
 setupLights();

@@ -61,7 +61,6 @@ ATOM Plugin link : <https://atom.io/packages/linter-eslint>
 Sublime Plugin Link: <https://github.com/SublimeLinter/SublimeLinter-eslint>
 JetBrains Marketplace Link: <https://plugins.jetbrains.com/plugin/7494-eslint>
 
-
 `no-restricted-imports: error` is set for importing `three`. You **must** import `THREE` from `./src/three.ts`.
 
 ## Testing
@@ -114,5 +113,30 @@ You can run automated tests using the following commands:
 
 ```bash
 npm run test
+```
+
+### Sequences
+
+The library has the ability to record short sequences of camera and motion data such that it can be replayed at a later date. This is useful for regression and performance testing.
+
+The manual tests have two buttons along the bottom toolbar:
+
+- 'Rec' starts capturing a 5 second sequence, then downloads the resulting data as a file.
+- 'Play' that lets you select a file and plays it back.
+
+You can trigger sequence recording using the following API:
+
+```ts
+pipeline.sequenceRecordStart(expected_frames?: number) : void;
+pipeline.sequenceRecordStop() : void;
+pipeline.sequenceRecordData() : ArrayBuffer;
+```
+
+You can subsequently play a sequence using `SequenceSource` as an alternative to `CameraSource`:
+
+```ts
+new SequenceSource(pipeline: pipeline_t)
+sequenceSource.load(src: string | ArrayBuffer) : void;
+sequenceSource.start() : void;
 ```
 

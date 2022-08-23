@@ -17,6 +17,9 @@ module.exports = {
   plugins: [],
   devServer: {
     static: "./dist",
+    client: {
+      overlay: false,
+    },
   },
   module: {
     rules: [
@@ -25,11 +28,6 @@ module.exports = {
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/,
-      },
-      {
-        test: /zcv\.wasm$/,
-        type: "javascript/auto",
-        loader: "file-loader",
       },
       {
         test: /\.(zpt|png|gif|glb|gltf|jpe?g|ogg|mp3|obj|fbx|wav|ttf|fnf|woff|stl|mp4|hdr|webm)$/,

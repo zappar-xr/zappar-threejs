@@ -1,5 +1,10 @@
+/* eslint-disable @typescript-eslint/explicit-member-accessibility */
+/* eslint-disable no-plusplus */
+/* eslint-disable prefer-const */
+/* eslint-disable import/no-webpack-loader-syntax */
+/* eslint-disable no-case-declarations */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 
 // <!-- build-remove-start -->
 import * as THREE from "three";
@@ -13,11 +18,14 @@ import targetPlaneTexture from "../../assets/planes/target.jpg";
 import faceImageSource from "../../assets/jest/camera-sources/face-target.jpg";
 import targetImageImageSource from "../../assets/jest/camera-sources/image-target.jpg";
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+// eslint-disable-next-line import/no-unresolved
+const sourceUrl = require("file-loader!../../assets/jest/camera-sources/instant-tracking.uar").default;
+
 ZapparThree.setLogLevel(ZapparThree.LogLevel.LOG_LEVEL_VERBOSE);
 
 const textureLoader = new THREE.TextureLoader();
 
-// @ts-ignore
 const getTexturedPlane = (src) =>
   new THREE.Mesh(new THREE.PlaneBufferGeometry(1, 0.25), new THREE.MeshBasicMaterial({ map: textureLoader.load(src), transparent: true, opacity: 0.75 }));
 
@@ -49,13 +57,29 @@ const img = document.createElement("img");
 export const camera = new ZapparThree.Camera({
   rearCameraSource: img,
 });
-// @ts-ignore
-export const setCameraSource = (type) => {
-  img.src = type === "face" ? faceImageSource : targetImageImageSource;
-};
 
-img.onload = () => {
-  camera.start();
+export const setCameraSource = (type) => {
+  // type : "image" | "instant" | "face"
+  // eslint-disable-next-line default-case
+  switch (type) {
+    case "image":
+    case "face":
+      img.src = type === "face" ? faceImageSource : targetImageImageSource;
+      img.onload = () => {
+        camera.start();
+      };
+      break;
+
+    case "instant":
+      const sequenceSource = new ZapparThree.SequenceSource(camera.pipeline);
+
+      fetch(sourceUrl).then(async (resp) => {
+        sequenceSource.load(await resp.arrayBuffer());
+
+        sequenceSource.start();
+      });
+      break;
+  }
 };
 
 camera.add(cameraPlane);
@@ -90,3 +114,55 @@ function animate() {
   }
 }
 animate();
+
+// Adapted from: https://github.com/fheyen/dynamic-time-warping-2
+
+export class DynamicTimeWarping {
+  constructor(ts1, ts2, distanceFunction) {
+    this.ser1 = ts1;
+
+    this.ser2 = ts2;
+
+    this.distFunc = distanceFunction;
+
+    this.distance = null;
+
+    this.matrix = null;
+
+    this.path = null;
+  }
+
+  getDistance() {
+    if (this.distance !== null) {
+      return this.distance;
+    }
+
+    this.matrix = [];
+
+    for (let i = 0; i < this.ser1.length; i++) {
+      this.matrix[i] = [];
+
+      for (let j = 0; j < this.ser2.length; j++) {
+        let cost = Infinity;
+        if (i > 0) {
+          cost = Math.min(cost, this.matrix[i - 1][j]);
+          if (j > 0) {
+            cost = Math.min(cost, this.matrix[i - 1][j - 1]);
+
+            cost = Math.min(cost, this.matrix[i][j - 1]);
+          }
+        } else if (j > 0) {
+          cost = Math.min(cost, this.matrix[i][j - 1]);
+        } else {
+          cost = 0;
+        }
+
+        this.matrix[i][j] = cost + this.distFunc(this.ser1[i], this.ser2[j]);
+      }
+    }
+
+    this.distance = this.matrix[this.ser1.length - 1][this.ser2.length - 1];
+
+    return this.distance;
+  }
+}
