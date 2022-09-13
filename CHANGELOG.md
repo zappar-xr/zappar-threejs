@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.3] - 2022-09-13
+
+- Bumped `three` support to `r144`
+
+### Changed
+
+- Migrated `SphereBufferGeometry` to `SphereGeometry` in `CameraEnvironmentMap`.
+
+### Tests
+
+- Migrated various now deprecated BufferGeometries to Geometries.
+
 ## [2.0.0] - 2022-08-23
 
 ### Added

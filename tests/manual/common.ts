@@ -11,18 +11,9 @@ const textureLoader = new THREE.TextureLoader();
 
 ZapparThree.setLogLevel(ZapparThree.LogLevel.LOG_LEVEL_VERBOSE);
 
-export const targetPlane = new THREE.Mesh(
-  new THREE.PlaneBufferGeometry(1, 0.25),
-  new THREE.MeshBasicMaterial({ map: textureLoader.load(targetPlaneTexture) })
-);
-export const scenePlane = new THREE.Mesh(
-  new THREE.PlaneBufferGeometry(1, 0.25),
-  new THREE.MeshBasicMaterial({ map: textureLoader.load(scenePlaneTexture) })
-);
-export const cameraPlane = new THREE.Mesh(
-  new THREE.PlaneBufferGeometry(1, 0.25),
-  new THREE.MeshBasicMaterial({ map: textureLoader.load(cameraPlaneTexture) })
-);
+export const targetPlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 0.25), new THREE.MeshBasicMaterial({ map: textureLoader.load(targetPlaneTexture) }));
+export const scenePlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 0.25), new THREE.MeshBasicMaterial({ map: textureLoader.load(scenePlaneTexture) }));
+export const cameraPlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 0.25), new THREE.MeshBasicMaterial({ map: textureLoader.load(cameraPlaneTexture) }));
 
 // targetPlane.scale.set(0.1, 0.1, 0.1);
 scenePlane.position.set(0, -0.5, -5);

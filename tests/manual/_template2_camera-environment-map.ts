@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import * as THREE from "three";
-import { MeshStandardMaterial, SphereBufferGeometry } from "three";
+import { MeshStandardMaterial, SphereGeometry } from "three";
 import * as ZapparThree from "../../src";
 import { camera, renderer, targetPlane, scenePlane, scene, cameraPlane } from "./common";
 
@@ -16,10 +16,7 @@ scene.environment = envMap.environmentMap;
 scene.remove(scenePlane);
 camera.remove(cameraPlane);
 
-const sphere = new THREE.Mesh(
-  new SphereBufferGeometry(1, 16, 12),
-  new MeshStandardMaterial({ metalness: 1.0, roughness: 0.0 })
-)
+const sphere = new THREE.Mesh(new SphereGeometry(1, 16, 12), new MeshStandardMaterial({ metalness: 1.0, roughness: 0.0 }));
 
 trackerGroup.add(sphere);
 

@@ -27,7 +27,7 @@ export class CameraEnvironmentMap {
   public constructor() {
     this.cubeMapScene.add(this.cubeCamera);
 
-    const sphere = new THREE.Mesh(new THREE.SphereBufferGeometry(10, 16, 12), this.sphereMaterial);
+    const sphere = new THREE.Mesh(new THREE.SphereGeometry(10, 16, 12), this.sphereMaterial);
 
     sphere.rotation.set(0, -0.5 * Math.PI, 0);
     this.sphereGroup.add(sphere);
