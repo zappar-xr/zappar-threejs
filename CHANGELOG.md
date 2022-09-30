@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.0.4] - 2022-09-30
+
+- Bumped `three` support to `r145`
+- Pinned dependency versions.
+
 ## [2.0.3] - 2022-09-13
 
 - Bumped `three` support to `r144`
