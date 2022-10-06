@@ -129,7 +129,7 @@ class UI {
     this.divs.progress.appendChild(this.divs.progressValue);
     this.containerDiv.appendChild(this.divs.inner);
 
-    this.divs.title.innerHTML = "Loading..";
+    this.divs.title.innerHTML = "Loading...";
 
     document.body.append(this.containerDiv);
   }

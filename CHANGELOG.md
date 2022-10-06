@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.0.5] - 2022-10-06
+
+- Updated `LoadingManager` loading text from `Loading..` to `Loading...`
+
 ## [2.0.4] - 2022-09-30
 
 - Bumped `three` support to `r145`
