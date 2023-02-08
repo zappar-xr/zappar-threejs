@@ -1,9 +1,10 @@
 {
     "compilerOptions": {
       "target": "ES6",
-      "module": "commonjs",
+      "module": "ESNext",
       "declaration": true,
       "outDir": "./lib",
+      "moduleResolution": "node",
       "lib": ["es2015", "dom"],
       "strict": true,
       "types": [ "@types/three", "jest", "puppeteer", "ts-jest", "jest-environment-puppeteer"]

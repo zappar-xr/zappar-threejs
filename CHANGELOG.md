@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.1.0] - 2023-03-08
+
+### Changed
+
+- Module is now built as `ESNext` (was `CommonJs`).
+
 ## [2.0.6] - 2022-11-14
 
 - Bumped `three` support to `r146`
