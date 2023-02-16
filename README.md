@@ -471,7 +471,7 @@ The Zappar library offers three types of tracking for you to use to build augmen
 
 - *Image Tracking* can detect and track a flat or curved image in 3D space. This is great for building content that's augmented onto business cards, posters, magazine pages, bottles, etc.
 - *Face Tracking* detects and tracks the user's face. You can attach 3D objects to the face itself, or render a 3D mesh that's fit to (and deforms with) the face as the user moves and changes their expression. You could build face-filter experiences to allow users to try on different virtual sunglasses, for example, or to simulate face paint.
-- *Instant World Tracking* lets you tracking 3D content to a point chosen by the user in the room or immediate environment around them. With this tracking type you could build a 3D model viewer that lets users walk around to view the model from different angles, or an experience that places an animated character in their room.
+- *Instant World Tracking* lets you track 3D content to a point chosen by the user in the room or immediate environment around them. With this tracking type you could build a 3D model viewer that lets users walk around to view the model from different angles, or an experience that places an animated character in their room.
 
 ### Image Tracking
 
