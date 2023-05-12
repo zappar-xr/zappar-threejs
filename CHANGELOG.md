@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.1.1] - 2023-03-27
+
+### Fixed
+
+- Fixed degenerate case for `ImageTargetPreview`.
+- Fixed an issue where the wrong camera would be used in `iOS 16.4`.
+
+## [2.2.0-beta.1] - 2023-02-08
+
+### Added
+
+- Spanish, Portuguese and German translations for permissions screen
+
+### Changed
+
+- Improvements to curved tracking
+
 ## [2.1.0] - 2023-03-08
 
 ### Changed

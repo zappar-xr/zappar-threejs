@@ -52,4 +52,5 @@ export {
   loaded,
   loadedPromise,
   SequenceSource,
+  cookiesPermitted,
 } from "@zappar/zappar";
