@@ -1,9 +1,10 @@
+/* eslint-disable no-underscore-dangle */
 import * as Zappar from "@zappar/zappar";
 import { InstantWorldAnchor } from "@zappar/zappar/lib/instantworldtracker";
+
 import { THREE } from "./three";
 import { getDefaultPipeline, CameraSource } from "./defaultpipeline";
-import { CameraTexture } from "./cameraTexture";
-
+import { CameraTexture, InlineDecoder } from "./cameraTexture";
 /**
  * The pose modes that determine how the camera moves around in the scene.
  */
@@ -191,11 +192,14 @@ export class Camera extends THREE.Camera {
     this.pipeline = opts instanceof Zappar.Pipeline ? opts : opts?.pipeline || getDefaultPipeline();
     this.rawPose = this.pipeline.cameraPoseDefault();
 
+    // SRGBColorSpace was introduced in r152
+
     if (opts && !(opts instanceof Zappar.Pipeline)) {
       this.zNear = opts.zNear ? opts.zNear : 0.1;
       this.zFar = opts.zFar ? opts.zFar : 100;
       this.rearCameraSource = this.cameraSourceFromOpts(opts.rearCameraSource);
       this.userCameraSource = this.cameraSourceFromOpts(opts.userCameraSource, true);
+
       this.backgroundTexture = opts.backgroundTexture ? opts.backgroundTexture : new CameraTexture();
     } else {
       this.rearCameraSource = new CameraSource(Zappar.cameraDefaultDeviceID(), this.pipeline);
@@ -283,6 +287,33 @@ export class Camera extends THREE.Camera {
     return this._currentMirrorMode;
   }
 
+  private inlineDecoder?: InlineDecoder;
+
+  public handleColorSpace(renderer: THREE.WebGLRenderer) {
+    // Casting renderer and THREE to any to bypass type checking
+    const rendererAny = renderer as any;
+    const THREEAny = THREE as any;
+
+    // Check if decoder is required based on outputColorSpace
+    let decoderRequired = false;
+    if (rendererAny?.outputColorSpace && THREEAny?.SRGBColorSpace) {
+      decoderRequired = rendererAny?.outputColorSpace === THREEAny?.SRGBColorSpace;
+    }
+
+    if (!decoderRequired) {
+      // If THREE's revision is less than 152, assign the outputEncoding to backgroundTexture's encoding
+      if (parseInt(THREE.REVISION, 10) < 152) {
+        (this as any).backgroundTexture.encoding = rendererAny.outputEncoding;
+      } else {
+        // If THREE's revision is greater than or equal to 152, assign the outputColorSpace to backgroundTexture's colorSpace
+        (this.backgroundTexture as any).colorSpace = rendererAny.outputColorSpace;
+      }
+    } else if (!this.inlineDecoder) {
+      // If decoder is required and inlineDecoder does not exist, create a new InlineDecoder with backgroundTexture
+      this.inlineDecoder = new InlineDecoder(this.backgroundTexture);
+    }
+  }
+
   /**
    * Processes camera frames and updates `backgroundTexture`.
    * Call this function on your pipeline once an animation frame (e.g. during your `requestAnimationFrame` function).
@@ -331,6 +362,7 @@ export class Camera extends THREE.Camera {
     this.matrixWorldNeedsUpdate = true;
     this.backgroundTexture.MirrorMode = this.currentMirrorMode;
     this.backgroundTexture.updateFromPipeline(renderer, this.pipeline);
+    this.handleColorSpace(renderer);
   }
 
   // eslint-disable-next-line no-underscore-dangle

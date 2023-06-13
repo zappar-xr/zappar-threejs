@@ -50,7 +50,9 @@ export class CameraEnvironmentMap {
    * @param zapparCamera - The Zappar camera you're using to render your scene
    */
   public update(renderer: THREE.WebGLRenderer, zapparCamera: Camera) {
-    this.environmentMap.encoding = renderer.outputEncoding;
+    if (parseInt(THREE.REVISION, 10) < 152) (this as any).environmentMap.encoding = (renderer as any).outputEncoding;
+    else (this.environmentMap as any).colorSpace = (renderer as any).outputColorSpace;
+
     this.sphereMaterial.map = zapparCamera.backgroundTexture;
     this.sphereGroup.quaternion.copy(zapparCamera.quaternion);
     this.cubeCamera.update(renderer, this.cubeMapScene);

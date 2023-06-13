@@ -23,8 +23,15 @@ ZapparThree.setLogLevel(ZapparThree.LogLevel.LOG_LEVEL_VERBOSE);
 
 const textureLoader = new THREE.TextureLoader();
 
-const getTexturedPlane = (src) =>
-  new THREE.Mesh(new THREE.PlaneBufferGeometry(1, 0.25), new THREE.MeshBasicMaterial({ map: textureLoader.load(src), transparent: true, opacity: 0.75 }));
+const getTexturedPlane = (src) => {
+  const plane =  new THREE.Mesh(
+    new THREE.PlaneBufferGeometry(1, 0.25),
+    new THREE.MeshBasicMaterial({ map: textureLoader.load(src), transparent: true, opacity: 0.75 })
+  );
+
+  plane.material.map.colorSpace = THREE.SRGBColorSpace;
+  return plane;
+};
 
 export const targetPlane = getTexturedPlane(targetPlaneTexture);
 export const scenePlane = getTexturedPlane(scenePlaneTexture);

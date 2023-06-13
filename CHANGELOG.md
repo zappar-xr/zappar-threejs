@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.0] - 2023-06-12
+
+### Changed
+
+- `TargetImagePreviewMesh` returns `sRGB` material by default.
+- Fixed an issue with washed out camera feed r152+
+
 ## [2.1.1] - 2023-03-27
 
 ### Fixed
