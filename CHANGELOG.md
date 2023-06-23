@@ -1,6 +1,12 @@
 # Changelog
 
-## [3.0.0] - 2023-06-12
+## [2.4.1] - 2023-06-23
+
+### Fixed
+
+- Fixed a curved image tracking performance issue.
+
+## [2.4.0] - 2023-06-12
 
 ### Changed
 

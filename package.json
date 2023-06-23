@@ -78,7 +78,7 @@
     "three": "0.118.0 - 0.153.0"
   },
   "dependencies": {
-    "@zappar/zappar": "2.2.0"
+    "@zappar/zappar": "2.2.1"
   },
   "husky": {
     "hooks": {
