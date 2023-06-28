@@ -298,11 +298,13 @@ export class Camera extends THREE.Camera {
     let decoderRequired = false;
     if (rendererAny?.outputColorSpace && THREEAny?.SRGBColorSpace) {
       decoderRequired = rendererAny?.outputColorSpace === THREEAny?.SRGBColorSpace;
+    } else if (THREEAny?.sRGBEncoding && rendererAny?.outputEncoding) {
+      decoderRequired = rendererAny?.outputEncoding === THREEAny?.sRGBEncoding;
     }
 
     if (!decoderRequired) {
-      // If THREE's revision is less than 152, assign the outputEncoding to backgroundTexture's encoding
-      if (parseInt(THREE.REVISION, 10) < 152) {
+      // If THREE's revision is, assign the outputEncoding to backgroundTexture's encoding
+      if (parseInt(THREE.REVISION, 10) <= 152) {
         (this as any).backgroundTexture.encoding = rendererAny.outputEncoding;
       } else {
         // If THREE's revision is greater than or equal to 152, assign the outputColorSpace to backgroundTexture's colorSpace

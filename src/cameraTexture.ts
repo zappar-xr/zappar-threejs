@@ -162,10 +162,14 @@ export class InlineDecoder {
    */
   private update(renderer: THREE.WebGLRenderer, cameraTexture: CameraTexture) {
     // check the color space every frame as the user could have changed it at any time
+    let decoderRequired = true;
     if ((THREE as any).SRGBColorSpace && (renderer as any).outputColorSpace) {
-      const decoderRequired = (renderer as any).outputColorSpace === (THREE as any).SRGBColorSpace;
-      if (!decoderRequired) return;
+      decoderRequired = (renderer as any).outputColorSpace === (THREE as any).SRGBColorSpace;
+    } else if ((THREE as any).sRGBEncoding && (renderer as any).outputEncoding) {
+      decoderRequired = (renderer as any).outputEncoding === (THREE as any).sRGBEncoding;
     }
+
+    if (!decoderRequired) return;
 
     // save the current render target so we can restore it later
     const previousRenderTarget = renderer.getRenderTarget();
