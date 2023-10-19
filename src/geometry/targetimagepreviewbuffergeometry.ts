@@ -13,8 +13,6 @@ export class TargetImagePreviewBufferGeometry extends THREE.BufferGeometry {
 
   private vertices: Float32Array | undefined;
 
-  private verticesAttribute: THREE.BufferAttribute | undefined;
-
   private recalculateNormals = true;
 
   /**
@@ -24,27 +22,26 @@ export class TargetImagePreviewBufferGeometry extends THREE.BufferGeometry {
   public constructor(private imageTarget: ImageTarget) {
     super();
 
-    this.setIndex([]);
-    this.setAttribute("position", new THREE.Float32BufferAttribute([], 3));
-    this.setAttribute("normal", new THREE.Float32BufferAttribute([], 3));
-    this.setAttribute("uv", new THREE.Float32BufferAttribute([], 2));
-
     if (this.imageTarget.preview.vertices.length === 0) {
       throw new Error("No vertices found in the image target.");
     }
 
-    this._updateIndices();
-    this._updateUVs();
+    const vertexCount = this.imageTarget.preview.vertices.length / 3;
 
-    if (!this.vertices) {
-      this.vertices = new Float32Array(this.imageTarget?.preview.vertices.length);
-      this.verticesAttribute = new THREE.BufferAttribute(this.vertices, 3);
-      this.setAttribute("position", this.verticesAttribute);
-    }
+    this.vertices = new Float32Array(vertexCount * 3);
     this.vertices.set(this.imageTarget.preview.vertices);
-    if (this.verticesAttribute) this.verticesAttribute.needsUpdate = true;
+    this.setAttribute("position", new THREE.BufferAttribute(this.vertices, 3));
+    this.setAttribute("normal", new THREE.Float32BufferAttribute(vertexCount * 3, 3));
+
+    this._updateUVs();
+    this._updateIndices();
 
     this.computeBoundingSphere();
+    this.computeVertexNormals();
+
+    this.attributes.position.needsUpdate = true;
+    this.attributes.normal.needsUpdate = true;
+    if (this.attributes.uv) this.attributes.uv.needsUpdate = true;
   }
 
   /**
@@ -52,9 +49,10 @@ export class TargetImagePreviewBufferGeometry extends THREE.BufferGeometry {
    */
   private _updateIndices() {
     if (this.hasSetIndices) return;
-    if (this.imageTarget?.preview.indices.length === 0) return;
-    this.setIndex(new THREE.Uint16BufferAttribute(this.imageTarget.preview.indices, 1));
-    this.hasSetIndices = true;
+    if (this.imageTarget?.preview.indices.length > 0) {
+      this.setIndex(new THREE.Uint16BufferAttribute(this.imageTarget.preview.indices, 1));
+      this.hasSetIndices = true;
+    }
   }
 
   /**
@@ -62,9 +60,10 @@ export class TargetImagePreviewBufferGeometry extends THREE.BufferGeometry {
    */
   private _updateUVs() {
     if (this.hasSetUVs) return;
-    if (this.imageTarget.preview.uvs.length === 0) return;
-    this.setAttribute("uv", new THREE.BufferAttribute(this.imageTarget.preview.uvs, 2));
-    this.hasSetUVs = true;
+    if (this.imageTarget.preview.uvs.length > 0) {
+      this.setAttribute("uv", new THREE.BufferAttribute(new Float32Array(this.imageTarget.preview.uvs), 2));
+      this.hasSetUVs = true;
+    }
   }
 
   /**

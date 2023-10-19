@@ -28,7 +28,7 @@ const textureLoader = new THREE.TextureLoader();
 
 const getTexturedPlane = (src) => {
   const plane =  new THREE.Mesh(
-    new THREE.PlaneBufferGeometry(1, 0.25),
+    new THREE.PlaneGeometry(1, 0.25),
     new THREE.MeshBasicMaterial({ map: textureLoader.load(src), transparent: true, opacity: 0.75 })
   );
 

@@ -22,53 +22,9 @@ You may also be interested in:
 <summary>Click to expand table of contents</summary>
 
 <!--ts-->
-   * [Zappar for ThreeJS](#zappar-for-threejs)
-      * [Table Of Contents](#table-of-contents)
-      * [Getting Started](#getting-started)
-         * [Bootstrap Projects](#bootstrap-projects)
-         * [Example Projects](#example-projects)
-      * [Starting Development](#starting-development)
-         * [Standalone Download](#standalone-download)
-         * [CDN](#cdn)
-         * [NPM Webpack Package](#npm-webpack-package)
-      * [Overview](#overview)
-      * [Local Preview and Testing](#local-preview-and-testing)
-      * [Compatibility and Browser Support](#compatibility-and-browser-support)
-         * [Detecting Browser Compatibility](#detecting-browser-compatibility)
-      * [Hosting and Publishing Content](#hosting-and-publishing-content)
-         * [Licensing](#licensing)
-         * [ZapWorks Hosting](#zapworks-hosting)
-         * [Self-hosting](#self-hosting)
-      * [Loading UI](#loading-ui)
-            * [Selective](#selective)
-            * [Global](#global)
-      * [Initialization and Camera Processing](#initialization-and-camera-processing)
-         * [Starting the GL Context](#starting-the-gl-context)
-         * [Constructing the Camera](#constructing-the-camera)
-         * [Options](#options)
-            * [Custom Video Devices](#custom-video-devices)
-            * [Clipping Planes](#clipping-planes)
-         * [Permissions](#permissions)
-         * [Starting the Camera](#starting-the-camera)
-         * [Processing Camera Frames](#processing-camera-frames)
-         * [Realtime Camera-based Reflections](#realtime-camera-based-reflections)
-         * [Camera Pose](#camera-pose)
-      * [Tracking](#tracking)
-         * [Image Tracking](#image-tracking)
-            * [Target File](#target-file)
-            * [Image Anchors](#image-anchors)
-            * [Events](#events)
-         * [Face Tracking](#face-tracking)
-            * [Model File](#model-file)
-            * [Face Anchors](#face-anchors)
-            * [Events](#events-1)
-         * [Face Landmarks](#face-landmarks)
-         * [Face Mesh](#face-mesh)
-         * [Head Masking](#head-masking)
-         * [Instant World Tracking](#instant-world-tracking)
-      * [Links and Resources](#links-and-resources)
 
-<!-- Added by: zapparadmin, at: Thu Jul  6 12:14:46 BST 2023 -->
+
+<!-- Added by: zapparadmin, at: Thu 19 Oct 2023 11:44:25 BST -->
 
 <!--te-->
 </details>
@@ -99,7 +55,7 @@ You can use this library by downloading a standalone zip containing the necessar
 ### Standalone Download
 
 Download the bundle from:
-<https://libs.zappar.com/zappar-threejs/2.4.3/zappar-threejs.zip>
+<https://libs.zappar.com/zappar-threejs/2.4.6/zappar-threejs.zip>
 
 Unzip into your web project and reference from your HTML like this:
 
@@ -112,7 +68,7 @@ Unzip into your web project and reference from your HTML like this:
 Reference the zappar.js library from your HTML like this:
 
 ```html
-<script src="https://libs.zappar.com/zappar-threejs/2.4.3/zappar-threejs.js"></script>
+<script src="https://libs.zappar.com/zappar-threejs/2.4.6/zappar-threejs.js"></script>
 ```
 
 ### NPM Webpack Package
